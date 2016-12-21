@@ -52,7 +52,7 @@ class Menu extends Component {
     });
 
     return (
-      <View/>
+      <View>
         <View>{menuItems}</View>
       </View>
     );

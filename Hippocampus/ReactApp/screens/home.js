@@ -8,14 +8,14 @@ import {
   Text,
   InteractionManager,
 } from 'react-native'
-import { TabViewAnimated, TabBarTop } from 'react-native-tab-view';
+// import { TabViewAnimated, TabBarTop } from 'react-native-tab-view';
 
 class Home extends Component {
 	constructor(props) {
 		super(props);
 	}
 
-	render = {} => {
+	render = () => {
 		return(
 			<Text>Hello from Home</Text>
 			);

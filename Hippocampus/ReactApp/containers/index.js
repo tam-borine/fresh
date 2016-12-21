@@ -12,9 +12,10 @@ import {
 console.log("anyone here by now")
 
 
-import NavigationBar from 'react-native-navbar'
-import SideMenu from 'react-native-side-menu'
-import * as SideMenuActions from '../actions/sidemenu'
+import NavigationBar from 'react-native-navbar';
+import SideMenu from 'react-native-side-menu';
+import * as SideMenuActions from '../actions/sidemenu';
+import Menu from '../components/menu';
 import Helpers from '../helpers';
 //missing styles, config.
 //missing Index (soonscreen), Menu and NavbarElements - custom componenets
@@ -74,9 +75,32 @@ export default class AppContainer extends Component {
 	}
 	render () {
 		return (
-			<Text>Hello world from containers/index.js</Text>
-			
-			);
+			<SideMenu
+				ref="rootSidebarMenu"
+				menu={<Menu navigate={this._onSideMenuPress} ref="rootSidebarMenuMenu" />}
+				disableGestures={this.props.sideMenuGesturesDisabled}
+				isOpen={state.sideMenu.isOpen}
+				onChange={this._onSideMenuChange}>
+
+				<Navigator
+					ref="rootNavigator"
+					renderScene={this._renderScene}
+					configureScene={function(route, routeStack) {
+					if(route.transition == 'FloatFromBottom')
+					  return Navigator.SceneConfigs.FloatFromBottom;
+					else
+					  return Navigator.SceneConfigs.PushFromRight;
+					}}
+					initialRoute={{
+					component: Index,
+					index: 0,
+					navigator: this.refs.rootNavigator,
+					// passProps: {
+					//   showSplashScreen: true,
+					// }
+				}} />
+			</SideMenu>
+    	);
 	}
 }
 
