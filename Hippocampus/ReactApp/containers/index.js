@@ -11,11 +11,17 @@ import {
 
 console.log("anyone here by now")
 
+
 import NavigationBar from 'react-native-navbar'
 import SideMenu from 'react-native-side-menu'
-// missing SideMenuActions - custom actions
-//missing styles, config, util.
+import * as SideMenuActions from '../actions/sidemenu'
+import Helpers from '../helpers';
+//missing styles, config.
 //missing Index (soonscreen), Menu and NavbarElements - custom componenets
+
+const mapStateToProps = (state) => ({
+  sideMenuIsOpen: state.sideMenu.isOpen, //need to look up but think isOpen is from SideMenu not SideMenuActions
+});
 
 export default class AppContainer extends Component {
 
@@ -24,20 +30,29 @@ export default class AppContainer extends Component {
     	StatusBar.setBackgroundColor("#dc143c", true); // Android Status Bar Color
 	}
 	_onSideMenuPress = (title, component, extraProps) => {
-
+		SideMenuActions.close()
+		//below might be needed in future, but currently we have no extra props from Menu items coming through
+		// if(Helpers.objIsEmpty(extraProps)) extraProps = {};
+		this.refs.rootNavigator.replace({
+			title: title,
+			component: component,
+			index: 0
+		});
 	}
 	_onSideMenuChange = (isOpen) => {
-
+		if (isOpen != state.sideMenu.isOpen) {
+			SideMenuActions.toggle();
+		}
 	}
 	_renderScene = (route, navigator) => {
 		 // Default Navbar Title
-    	let title = route.title || AppConfig.appName;
+    	let title = route.title || 'Hippocampus';
 
     	// Show Hamburger Icon when index is 0, and Back Arrow Icon when index is > 0
     	let leftButton = {
       		onPress: (route.index > 0)
         		? this.refs.rootNavigator.pop
-        		: this.props.toggleSideMenu,
+        		: SideMenuActions.toggle(),
       		icon: (route.index > 0)
         		? 'ios-arrow-back-outline'
         		: 'ios-menu-outline'
@@ -46,11 +61,23 @@ export default class AppContainer extends Component {
 	    if(route.transition == 'FloatFromBottom')  {
 	      	leftButton.icon = 'ios-close-outline';
 	    }
+		return (
+	      <View>
+	        <NavigationBar
+	          title={<NavbarElements.Title title={title || null} />}
+	          statusBar={{style: 'light-content', hidden: false}}
+	          tintColor={"#dc143c"}
+	          leftButton={<NavbarElements.LeftButton onPress={leftButton.onPress} icon={leftButton.icon} />} />
+	        <route.component navigator={navigator} route={route}/>
+	      </View>
+	    );
 	}
 	render () {
 		return (
-			<Text>Hello world</Text>
+			<Text>Hello world from containers/index.js</Text>
 			
 			);
 	}
 }
+
+
