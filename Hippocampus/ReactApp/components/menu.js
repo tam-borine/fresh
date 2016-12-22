@@ -25,12 +25,31 @@ class Menu extends Component {
 	       	{title: 'Help', component: Home},
 
 	      ],
+	      isOpen: false,
 	    };
 	}
 
 	static propTypes = {
     	navigate: React.PropTypes.func.isRequired,
   	}
+
+  	toggle = () => {
+  		this.setState({
+  			isOpen: !this.state.isOpen
+  		})
+  	}
+
+  	open = () => {
+  		this.setState({
+  			isOpen: true
+  		})
+  	}
+
+  	close = () => {
+		this.setState({
+  			isOpen: false
+  		})  	
+	}
 
   	render = () => {
     let { navigate } = this.props;

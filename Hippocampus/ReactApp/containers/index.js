@@ -9,20 +9,15 @@ import {
 	View
 } from 'react-native'
 
-console.log("anyone here by now")
-
 
 import NavigationBar from 'react-native-navbar';
 import SideMenu from 'react-native-side-menu';
-import * as SideMenuActions from '../actions/sidemenu';
+// import * as SideMenuActions from '../actions/sidemenu';
 import Menu from '../components/menu';
 import Helpers from '../helpers';
 //missing styles, config.
 //missing Index (soonscreen), Menu and NavbarElements - custom componenets
 
-const mapStateToProps = (state) => ({
-  sideMenuIsOpen: state.sideMenu.isOpen, //need to look up but think isOpen is from SideMenu not SideMenuActions
-});
 
 export default class AppContainer extends Component {
 
@@ -31,7 +26,7 @@ export default class AppContainer extends Component {
     	StatusBar.setBackgroundColor("#dc143c", true); // Android Status Bar Color
 	}
 	_onSideMenuPress = (title, component, extraProps) => {
-		SideMenuActions.close()
+		Menu.close()
 		//below might be needed in future, but currently we have no extra props from Menu items coming through
 		// if(Helpers.objIsEmpty(extraProps)) extraProps = {};
 		this.refs.rootNavigator.replace({
@@ -41,8 +36,8 @@ export default class AppContainer extends Component {
 		});
 	}
 	_onSideMenuChange = (isOpen) => {
-		if (isOpen != state.sideMenu.isOpen) {
-			SideMenuActions.toggle();
+		if (isOpen != Menu.state.isOpen) {
+			Menu.toggle();
 		}
 	}
 	_renderScene = (route, navigator) => {
@@ -53,7 +48,7 @@ export default class AppContainer extends Component {
     	let leftButton = {
       		onPress: (route.index > 0)
         		? this.refs.rootNavigator.pop
-        		: SideMenuActions.toggle(),
+        		: Menu.toggle(),
       		icon: (route.index > 0)
         		? 'ios-arrow-back-outline'
         		: 'ios-menu-outline'
@@ -79,7 +74,7 @@ export default class AppContainer extends Component {
 				ref="rootSidebarMenu"
 				menu={<Menu navigate={this._onSideMenuPress} ref="rootSidebarMenuMenu" />}
 				disableGestures={this.props.sideMenuGesturesDisabled}
-				isOpen={state.sideMenu.isOpen}
+				isOpen={}
 				onChange={this._onSideMenuChange}>
 
 				<Navigator
