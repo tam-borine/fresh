@@ -11,6 +11,7 @@ import {
 } from 'react-native'
 
 var auth = require('../oauth.js')
+var fir = require('../firebase.js')
 
 console.log("anyone here by now")
 
@@ -20,7 +21,7 @@ import SideMenu from 'react-native-side-menu'
 export default class AppContainer extends Component {
 	render () {
 		return (
-			<Button title="Sign In Button" onPress={() => auth.authenticateViaGoogle()}>Click me to sign in</Button>
+			<Button title="Agnostic Trigger Button" onPress={() => fir.testingFirebase()}>Click me to test</Button>
 			
 			);
 	}
