@@ -7,14 +7,13 @@ const config =  {
     client_secret: env.getKey('FB_SECRET')
   },
   google: {
-  	callback_url: env.getKey('GGL_CALLBACK_URL'),
+  	callback_url: env.getKey('GGL_CALLBACK_URL'), //this callback redirect url might need to change for Android. See react-native-oauth's docs.
   	client_id: env.getKey('GGL_KEY'),
   	client_secret: env.getKey('GGL_SECRET')
   }
 }
-// Create the manager
+
 const manager = new OAuthManager('Hippocampus')
-// configure the manager
 manager.configure(config);
 
 module.exports.authenticateViaFb = () => {
