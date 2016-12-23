@@ -20,7 +20,7 @@ import SideMenu from 'react-native-side-menu'
 export default class AppContainer extends Component {
 	render () {
 		return (
-			<Button title="hi" onPress={() => auth.authenticateViaFb()}>Click me to sign in</Button>
+			<Button title="Sign In Button" onPress={() => auth.authenticateViaGoogle()}>Click me to sign in</Button>
 			
 			);
 	}
