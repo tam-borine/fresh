@@ -10,6 +10,7 @@
     "react": "15.4.1",
     "react-native": "0.39.2",
     "react-native-navbar": "^1.5.4",
+    "react-native-oauth": "^2.1.5",
     "react-native-side-menu": "^0.20.1"
   },
   "devDependencies": {

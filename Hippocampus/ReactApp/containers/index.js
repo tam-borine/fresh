@@ -6,8 +6,11 @@ import {
 	Navigator,
 	StatusBar,
 	Text,
-	View
+	View,
+	Button
 } from 'react-native'
+
+var auth = require('../oauth.js')
 
 console.log("anyone here by now")
 
@@ -17,7 +20,7 @@ import SideMenu from 'react-native-side-menu'
 export default class AppContainer extends Component {
 	render () {
 		return (
-			<Text>Hello world</Text>
+			<Button title="hi" onPress={() => auth.authenticateViaFb()}>Click me to sign in</Button>
 			
 			);
 	}
