@@ -23,10 +23,10 @@
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		23C5B0871E0D85160012F0A4 /* libOAuthManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 23C7B5A01E0D82BF00D0A4E8 /* libOAuthManager.a */; };
-		3AA767F55FC6DC4112F161C9 /* Pods_HippocampusTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3463476F0B28D32AF94C0FB9 /* Pods_HippocampusTests.framework */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
-		C0C67CDDA7892314B0670BB3 /* Pods_Hippocampus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A593BE5E40B271BFA102251F /* Pods_Hippocampus.framework */; };
+		86747BC9B20341B7811C15A7 /* libFirestack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 801A556760E242138DCD8AFB /* libFirestack.a */; };
+		8ED5DD35B8A31D5436C75C8D /* libPods-Hippocampus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F0C27E64915BED52296CDDE /* libPods-Hippocampus.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,6 +149,13 @@
 			remoteGlobalIDString = 2D2A28131D9B038B00D4039D;
 			remoteInfo = "React-tvOS";
 		};
+		23EDDC4B1E0DC519004F2674 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EF581B0080974FAEAD918E6C /* Firestack.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = Firestack;
+		};
 		5E9157321DD0AC6500FF2AA8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */;
@@ -201,15 +208,15 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		23C7B5C21E0D830D00D0A4E8 /* Hippocampus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Hippocampus.entitlements; path = Hippocampus/Hippocampus.entitlements; sourceTree = "<group>"; };
 		3463476F0B28D32AF94C0FB9 /* Pods_HippocampusTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HippocampusTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		46ACC906B7032293311D22E5 /* Pods-HippocampusTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HippocampusTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HippocampusTests/Pods-HippocampusTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4CE506885933657DC6B81412 /* Pods-Hippocampus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hippocampus.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hippocampus/Pods-Hippocampus.release.xcconfig"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
+		6F0C27E64915BED52296CDDE /* libPods-Hippocampus.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Hippocampus.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F558EF6AB524222A5453805 /* OAuthManager.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = OAuthManager.xcodeproj; path = "../node_modules/react-native-oauth/ios/OAuthManager.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
+		801A556760E242138DCD8AFB /* libFirestack.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libFirestack.a; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		A405540CF1539480B8BB5845 /* Pods-Hippocampus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hippocampus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hippocampus/Pods-Hippocampus.debug.xcconfig"; sourceTree = "<group>"; };
-		A593BE5E40B271BFA102251F /* Pods_Hippocampus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hippocampus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E527B0AA2458FB67DE66A872 /* Pods-HippocampusTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HippocampusTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HippocampusTests/Pods-HippocampusTests.release.xcconfig"; sourceTree = "<group>"; };
+		EF581B0080974FAEAD918E6C /* Firestack.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = Firestack.xcodeproj; path = "../node_modules/react-native-firestack/ios/Firestack.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,7 +225,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */,
-				3AA767F55FC6DC4112F161C9 /* Pods_HippocampusTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,7 +244,8 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				C0C67CDDA7892314B0670BB3 /* Pods_Hippocampus.framework in Frameworks */,
+				8ED5DD35B8A31D5436C75C8D /* libPods-Hippocampus.a in Frameworks */,
+				86747BC9B20341B7811C15A7 /* libFirestack.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,8 +356,8 @@
 		15A57E125B86FC7589026941 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A593BE5E40B271BFA102251F /* Pods_Hippocampus.framework */,
 				3463476F0B28D32AF94C0FB9 /* Pods_HippocampusTests.framework */,
+				6F0C27E64915BED52296CDDE /* libPods-Hippocampus.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -359,6 +366,14 @@
 			isa = PBXGroup;
 			children = (
 				23C7B5A01E0D82BF00D0A4E8 /* libOAuthManager.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		23EDDC481E0DC519004F2674 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				23EDDC4C1E0DC519004F2674 /* libFirestack.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -377,8 +392,6 @@
 			children = (
 				A405540CF1539480B8BB5845 /* Pods-Hippocampus.debug.xcconfig */,
 				4CE506885933657DC6B81412 /* Pods-Hippocampus.release.xcconfig */,
-				46ACC906B7032293311D22E5 /* Pods-HippocampusTests.debug.xcconfig */,
-				E527B0AA2458FB67DE66A872 /* Pods-HippocampusTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -407,6 +420,7 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				6F558EF6AB524222A5453805 /* OAuthManager.xcodeproj */,
+				EF581B0080974FAEAD918E6C /* Firestack.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -450,12 +464,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "HippocampusTests" */;
 			buildPhases = (
-				EC28FE9C2C03B44138E1A917 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				5077E125430805229B7849E4 /* [CP] Embed Pods Frameworks */,
-				3257C6595F5480D862BA9133 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -523,6 +534,10 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = 23EDDC481E0DC519004F2674 /* Products */;
+					ProjectRef = EF581B0080974FAEAD918E6C /* Firestack.xcodeproj */;
+				},
 				{
 					ProductGroup = 23C7B59C1E0D82BE00D0A4E8 /* Products */;
 					ProjectRef = 6F558EF6AB524222A5453805 /* OAuthManager.xcodeproj */;
@@ -693,6 +708,13 @@
 			remoteRef = 23C7B5C01E0D82BF00D0A4E8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		23EDDC4C1E0DC519004F2674 /* libFirestack.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFirestack.a;
+			remoteRef = 23EDDC4B1E0DC519004F2674 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -772,21 +794,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hippocampus/Pods-Hippocampus-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3257C6595F5480D862BA9133 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HippocampusTests/Pods-HippocampusTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		504F8585696EE4CB1983FF92 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -800,36 +807,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hippocampus/Pods-Hippocampus-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5077E125430805229B7849E4 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HippocampusTests/Pods-HippocampusTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EC28FE9C2C03B44138E1A917 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		F951F96D73480608F8817160 /* [CP] Check Pods Manifest.lock */ = {
@@ -892,7 +869,6 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 46ACC906B7032293311D22E5 /* Pods-HippocampusTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -902,6 +878,10 @@
 				INFOPLIST_FILE = HippocampusTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hippocampus.app/Hippocampus";
 			};
@@ -909,13 +889,16 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E527B0AA2458FB67DE66A872 /* Pods-HippocampusTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = HippocampusTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hippocampus.app/Hippocampus";
 			};
@@ -936,6 +919,7 @@
 					"$(SRCROOT)/../node_modules/react-native/ReactCommon/**",
 					"$(SRCROOT)/../node_modules/react-native-oauth/ios/OAuthManager",
 					"$(SRCROOT)/../node_modules/react-native/Libraries/LinkingIOS\n/**",
+					"$(SRCROOT)/../node_modules/react-native-firestack/ios/Firestack",
 				);
 				INFOPLIST_FILE = Hippocampus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -963,6 +947,7 @@
 					"$(SRCROOT)/../node_modules/react-native/ReactCommon/**",
 					"$(SRCROOT)/../node_modules/react-native-oauth/ios/OAuthManager",
 					"$(SRCROOT)/../node_modules/react-native/Libraries/LinkingIOS\n/**",
+					"$(SRCROOT)/../node_modules/react-native-firestack/ios/Firestack",
 				);
 				INFOPLIST_FILE = Hippocampus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1015,6 +1000,7 @@
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native/ReactCommon/**",
 					"$(SRCROOT)/../node_modules/react-native-oauth/ios/OAuthManager",
+					"$(SRCROOT)/../node_modules/react-native-firestack/ios/Firestack",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -1056,6 +1042,7 @@
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native/ReactCommon/**",
 					"$(SRCROOT)/../node_modules/react-native-oauth/ios/OAuthManager",
+					"$(SRCROOT)/../node_modules/react-native-firestack/ios/Firestack",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
