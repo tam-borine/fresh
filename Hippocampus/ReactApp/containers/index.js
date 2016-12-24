@@ -12,7 +12,8 @@ import {
 } from 'react-native'
 
 var auth = require('../oauth.js')
-import Anonymous from '../anon'
+// import Anonymous from '../anon'
+import EmailLogin from '../email'
 
 import NavigationBar from 'react-native-navbar'
 import SideMenu from 'react-native-side-menu'
@@ -20,9 +21,9 @@ import SideMenu from 'react-native-side-menu'
 export default class AppContainer extends Component {
 	render () {
 		return (
-			<Anonymous title="Agnostic Trigger Button" onPress={() => fir.testingFirebase()}>Click me to test</Anonymous>
+			<EmailLogin/>
 			);
 	}
 }
 
-console.log("we made it thusfar")
+//			<Anonymous title="Agnostic Trigger Button" onPress={() => fir.testingFirebase()}>Click me to test</Anonymous>
