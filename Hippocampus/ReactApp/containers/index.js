@@ -13,7 +13,8 @@ import {
 
 var auth = require('../oauth.js')
 // import Anonymous from '../anon'
-import EmailLogin from '../email'
+// import EmailLogin from '../email'
+import Example from '../linkedin.js'
 
 import NavigationBar from 'react-native-navbar'
 import SideMenu from 'react-native-side-menu'
@@ -21,7 +22,7 @@ import SideMenu from 'react-native-side-menu'
 export default class AppContainer extends Component {
 	render () {
 		return (
-			<EmailLogin/>
+			<Example/>
 			);
 	}
 }

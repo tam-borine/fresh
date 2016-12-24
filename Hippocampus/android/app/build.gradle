@@ -126,6 +126,8 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-vector-icons')
+    compile project(':react-native-linkedin-login')
     compile project(':react-native-firestack')
     compile project(':react-native-oauth')
     compile fileTree(dir: "libs", include: ["*.jar"])
