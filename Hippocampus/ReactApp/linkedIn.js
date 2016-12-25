@@ -108,13 +108,14 @@ class Example extends React.Component {
   }
   render() {
     if (!this.state.user) {
-      console.log(<Icon.Button name="aname" backgroundColor="#0059b3" onPress={ this._login.bind(this) } > </Icon.Button>)
       return (
         <View style={ styles.container }>
           <Icon.Button
             name="linkedin"
-            backgroundColor="#0059b3"
+            backgroundColor="#0059b3" //fb is #3b5998
             onPress={ this._login.bind(this) }>
+                <Text style={{fontFamily: 'Arial', fontSize: 15, color: '#ffffff'}}>Sign in with Linked In</Text>
+
           </Icon.Button>
         </View>
       );
