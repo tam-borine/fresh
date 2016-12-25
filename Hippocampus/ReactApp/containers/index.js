@@ -14,7 +14,7 @@ import {
 var auth = require('../oauth.js')
 // import Anonymous from '../anon'
 // import EmailLogin from '../email'
-import Example from '../linkedin.js'
+import Example from '../linkedIn.js'
 
 import NavigationBar from 'react-native-navbar'
 import SideMenu from 'react-native-side-menu'

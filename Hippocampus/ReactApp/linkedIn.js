@@ -11,7 +11,7 @@ import {
 const env = require('../environment.js')
 
 const LinkedinLogin = require('react-native-linkedin-login');
-const Icon = require('react-native-vector-icons/FontAwesome');
+import Icon from 'react-native-vector-icons/FontAwesome';
 const Store = require('react-native-simple-store');
 
 class Example extends React.Component {
@@ -108,13 +108,13 @@ class Example extends React.Component {
   }
   render() {
     if (!this.state.user) {
+      console.log(<Icon.Button name="aname" backgroundColor="#0059b3" onPress={ this._login.bind(this) } > </Icon.Button>)
       return (
         <View style={ styles.container }>
           <Icon.Button
             name="linkedin"
             backgroundColor="#0059b3"
-            onPress={ this._login }>
-          Sign in with Linkedin
+            onPress={ this._login.bind(this) }>
           </Icon.Button>
         </View>
       );
@@ -122,6 +122,8 @@ class Example extends React.Component {
 
 
     if (this.state.user) {
+            console.log("weird there is user but runnign")
+
       const lastNameComp = (this.state.user.lastName) ? (
           <Text style={ { fontSize: 18, fontWeight: 'bold', marginBottom: 20 } }>
           Welcome { `${this.state.user.firstName} ${this.state.user.lastName}` }
@@ -156,8 +158,12 @@ class Example extends React.Component {
         </View>
       );
     }
+    else {
+      console.log("neither evaluated")
+    }
   }
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
