@@ -35,7 +35,7 @@ export default class Feed extends Component {
   _createPost = () => {
   	this.setState(
   	{ newPost: <Post body={this.state.textInput}/>},
-  	() => {this._updateListView())
+  	() => {this._updateListView();})
   }
 
   _updateListView = () => {
