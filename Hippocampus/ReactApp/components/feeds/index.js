@@ -15,7 +15,7 @@ export default class Feed extends Component {
     super();
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      ds: (["object","another1","third"]),
+      data: (["object","another1","third"]),
       dataSource: ds,
       newString: ""
     };
@@ -23,14 +23,14 @@ export default class Feed extends Component {
 
     componentDidMount(){
     this.setState({
-      dataSource:this.state.dataSource.cloneWithRows(this.state.ds),
+      dataSource:this.state.dataSource.cloneWithRows(this.state.data),
     })
   }
 
   _updateListView = () => {
-  	this.state.ds.push(this.state.newString)
+  	this.state.data.push(this.state.newString)
   	    this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(this.state.ds),
+      dataSource: this.state.dataSource.cloneWithRows(this.state.data),
     })
   }
 
