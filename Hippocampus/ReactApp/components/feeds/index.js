@@ -2,6 +2,7 @@
 
 import React, {Component} from 'react'
 import {
+	Navigator,
 	ScrollView,
 	ListView,
 	Text,
@@ -10,6 +11,7 @@ import {
 	TextInput
 } from 'react-native'
 import { Container, Header, InputGroup, Input, Icon, Button as BaseButton } from 'native-base';
+//alias BaseButton necesary as we import two Button components and React gets confused...
 
 
 export default class Feed extends Component {
@@ -33,7 +35,7 @@ export default class Feed extends Component {
   _createPost = () => {
   	this.setState(
   	{ newPost: <Post body={this.state.textInput}/>},
-  	() => this._updateListView())
+  	() => {this._updateListView(); console.log(this.state.textInput)})
   }
 
   _updateListView = () => {
@@ -44,8 +46,15 @@ export default class Feed extends Component {
     })
   }
 
+  _getCreatePostPage = () =>{
+
+  }
+
+  _updateTextInput = (text) => {
+  	this.setState({textInput: text})
+  }
+
 	render(){
-		// const something = "something"
 		return(
 			<ScrollView>
 			<SearchBar/>
@@ -53,17 +62,13 @@ export default class Feed extends Component {
 				dataSource={this.state.dataSource}
 				renderRow={(rowData) => <Text>{rowData}</Text>}
 			/>
-			<TextInput
-				style={{height: 40}}
-				placeholder="Type here to add a post!"
-				onChangeText={(text) => this.setState({textInput: text})}
-			/>
 			<Button
-				onPress={this._createPost}
-				title="update list"
-				color="#841584"
-				accessibilityLabel="Learn more about this purple button"
+				onPress={this._getCreatePostPage}
+				title="create post"
+
 			/>
+			<CreatePostScene createPost={this._createPost} updateTextInput={this._updateTextInput}/>
+
 			</ScrollView>
 			)
 	}
@@ -91,5 +96,26 @@ class Post extends Component {
 		return(
 			<Text>{this.props.body}</Text>
 			)
+	}
+}
+
+class CreatePostScene extends Component {
+	render(){
+		return(
+			<View>
+			<TextInput
+				style={{height: 40}}
+				placeholder="Type here to add a post!"
+				onChangeText={(text) => this.props.updateTextInput(text)}
+			/>
+			<Button
+				onPress={() => this.props.createPost()}
+				title="update list"
+				color="#841584"
+				accessibilityLabel="Learn more about this purple button"
+			/>
+			</View>
+
+		)
 	}
 }
