@@ -8,6 +8,7 @@ import {
 
 import SignInHeader from './signInHeader'
 import ProviderLogins from './providerLogins'
+import CustomSignInForm from './customSignInForm'
 
 
 export default class SignInPage extends Component {
@@ -16,7 +17,9 @@ export default class SignInPage extends Component {
 			<View>
 				<SignInHeader/>
 				<ProviderLogins/>
-				<Text>-or-</Text>
+				<Text/>
+				<Text style={{textAlign: 'center'}}>-or-</Text>
+				<CustomSignInForm/>
 
 
 			</View>
@@ -25,7 +28,6 @@ export default class SignInPage extends Component {
 }
 
 
-//				<CustomSignInForm/>
 
 
 				// <Text style={{color: 'red'}}

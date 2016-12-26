@@ -15,14 +15,15 @@ var auth = require('../oauth.js')
 // import Anonymous from '../anon'
 // import EmailLogin from '../email'
 // import Example from '../linkedIn.js'
-import SignInPage from '../components/signInPage/index'
+// import SignInPage from '../components/signInPage/index'
+import Feed from '../components/feeds/index'
 import NavigationBar from 'react-native-navbar'
 import SideMenu from 'react-native-side-menu'
 
 export default class AppContainer extends Component {
 	render () {
 		return (
-			<SignInPage/>
+			<Feed/>
 			);
 	}
 }

@@ -14,6 +14,7 @@ export default class ProviderLogins extends Component {
 		return(
 			<View>
 				<View >
+				<Text/>
 					<Icon.Button
 						name="facebook"
 						backgroundColor="#3b5998" 
