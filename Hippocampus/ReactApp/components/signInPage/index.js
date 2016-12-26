@@ -6,25 +6,34 @@ import {
 	Text
 } from 'react-native'
 
-class SignInPage extends Component {
+import SignInHeader from './signInHeader'
+import ProviderLogins from './providerLogins'
+
+
+export default class SignInPage extends Component {
 	render(){
 		return(
 			<View>
-				<Header/>
+				<SignInHeader/>
 				<ProviderLogins/>
-				<Text>{"-or-"}</Text>
-				<CustomSignInForm/>
-				<Text style={{color: 'red'}}
-				      onPress={() => Linking.openURL('some app route')}>
-				  Forgot Password?
-				</Text>
+				<Text>-or-</Text>
 
-				<Text style={{color: 'red'}}
-				      onPress={() => Linking.openURL('some app route')}>
-				  Not registered? Create a free account...
-				</Text>
 
 			</View>
 			)
 	}
 }
+
+
+//				<CustomSignInForm/>
+
+
+				// <Text style={{color: 'red'}}
+				//       onPress={() => Linking.openURL('some app route')}>
+				//   Forgot Password?
+				// </Text>
+
+				// <Text style={{color: 'red'}}
+				//       onPress={() => Linking.openURL('some app route')}>
+				//   Not registered? Create a free account...
+				// </Text>

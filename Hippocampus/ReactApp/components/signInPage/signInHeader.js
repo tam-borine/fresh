@@ -8,11 +8,13 @@ import {
 	Image
 } from 'react-native'
 
+
 export default class SignInHeader extends Component {
 	render(){
-		var {height, width} = Dimensions.get('window');
+		const {height, width} = Dimensions.get('window');
 		return (
-			<View style={{width: width, height: 150, backgroundColor: 'red'}}>
+			<View style={{width: width, height: height/4, backgroundColor: 'red'}}>
+				<Text/>
 				<Text/>
 				<Text/>
 				<Image
@@ -21,9 +23,8 @@ export default class SignInHeader extends Component {
 				    source={require('./images/logo_white.png')}
 				/>
 				<Text style={{textAlign: 'center', color: '#ffffff', fontSize: 20}}>Hippocampus</Text>
-				<Text style={{textAlign: 'center', color: '#ffffff'}}>Making doctors' lives easier</Text>
-			</View>
-
+				<Text style={{textAlign: 'center', color: '#ffffff'}}>Making doctors lives easier</Text>
+				</View>
 			)
 	}
 }
