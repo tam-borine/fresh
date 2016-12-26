@@ -10,6 +10,7 @@ import {
 	TextInput
 } from 'react-native'
 
+
 export default class Feed extends Component {
 	 constructor() {
     super();
@@ -17,7 +18,8 @@ export default class Feed extends Component {
     this.state = {
       data: (["object","another1","third"]),
       dataSource: ds,
-      newString: ""
+      textInput: "",
+      newPost: null
     };
   }
 
@@ -27,8 +29,15 @@ export default class Feed extends Component {
     })
   }
 
+  _createPost = () => {
+  	this.setState(
+  	{ newPost: <Post body={this.state.textInput}/>},
+  	() => this._updateListView())
+  }
+
   _updateListView = () => {
-  	this.state.data.push(this.state.newString)
+  	console.log(this.state.newPost)
+  	this.state.data.push(this.state.newPost)
   	    this.setState({
       dataSource: this.state.dataSource.cloneWithRows(this.state.data),
     })
@@ -45,15 +54,23 @@ export default class Feed extends Component {
 			<TextInput
 				style={{height: 40}}
 				placeholder="Type here to add a post!"
-				onChangeText={(text) => this.setState({newString: text})}
+				onChangeText={(text) => this.setState({textInput: text})}
 			/>
 			<Button
-				onPress={this._updateListView}
+				onPress={this._createPost}
 				title="update list"
 				color="#841584"
 				accessibilityLabel="Learn more about this purple button"
 			/>
 			</ScrollView>
+			)
+	}
+}
+
+class Post extends Component {
+	render(){
+		return(
+			<Text>{this.props.body}</Text>
 			)
 	}
 }
