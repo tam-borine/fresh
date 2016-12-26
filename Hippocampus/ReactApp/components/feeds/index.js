@@ -15,7 +15,7 @@ export default class Feed extends Component {
     super();
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      ds: ([]),
+      ds: (["object","another1","third"]),
       dataSource: ds,
       newString: ""
     };
@@ -27,22 +27,17 @@ export default class Feed extends Component {
     })
   }
 
-  // _createPost = (someString) => {
-  // 	return
-  // }
-
   _updateListView = () => {
-  	var newArray = this.state.ds.slice()
-  	newArray.push(this.state.newString)
+  	this.state.ds.push(this.state.newString)
   	    this.setState({
-      dataSource:this.state.dataSource.cloneWithRows(newArray),
+      dataSource: this.state.dataSource.cloneWithRows(this.state.ds),
     })
   }
 
 	render(){
 		// const something = "something"
 		return(
-			<View>
+			<ScrollView>
 			<ListView
 				dataSource={this.state.dataSource}
 				renderRow={(rowData) => <Text>{rowData}</Text>}
@@ -58,7 +53,7 @@ export default class Feed extends Component {
 				color="#841584"
 				accessibilityLabel="Learn more about this purple button"
 			/>
-			</View>
+			</ScrollView>
 			)
 	}
 }
