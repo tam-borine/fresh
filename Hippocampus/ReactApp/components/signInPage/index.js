@@ -3,7 +3,8 @@
 import React, {Component} from 'react'
 import {
 	View,
-	Text
+	Text,
+	Linking
 } from 'react-native'
 
 import SignInHeader from './signInHeader'
@@ -19,8 +20,18 @@ export default class SignInPage extends Component {
 				<ProviderLogins/>
 				<Text/>
 				<Text style={{textAlign: 'center'}}>-or-</Text>
+				<Text/>
 				<CustomSignInForm/>
 
+				<Text style={{color: 'red', textAlign: 'center'}}
+				      onPress={() => Linking.openURL('some app route')}>
+				  Forgot Password?
+				</Text>
+				<Text/>
+				<Text style={{color: 'red', textAlign: 'center'}}
+					onPress={() => Linking.openURL('some app route')}>
+					Not registered? Create a free account...
+				</Text>
 
 			</View>
 			)
@@ -29,13 +40,3 @@ export default class SignInPage extends Component {
 
 
 
-
-				// <Text style={{color: 'red'}}
-				//       onPress={() => Linking.openURL('some app route')}>
-				//   Forgot Password?
-				// </Text>
-
-				// <Text style={{color: 'red'}}
-				//       onPress={() => Linking.openURL('some app route')}>
-				//   Not registered? Create a free account...
-				// </Text>

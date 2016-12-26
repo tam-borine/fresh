@@ -3,10 +3,9 @@
 import React, {Component} from 'react'
 import {
 	ScrollView,
-	Button,
 	Text
 } from 'react-native'
-import { Container, Content, InputGroup, Input } from 'native-base';
+import { Container, Content, InputGroup, Input, Button } from 'native-base';
 
 
 export default class CustomSignInForm extends Component{
@@ -15,21 +14,22 @@ export default class CustomSignInForm extends Component{
 
         return (
         	<ScrollView>
+        		<Text/>
 	        	<InputBox plac='email'/>
 	        	<Text/>
 	        	<InputBox plac='password'/>
+	        	<Text/>
 	        	<Button
 					onPress={{}}
-					title="Sign Up"
-					color="#841584"
-					accessibilityLabel="Learn more about this purple button"
-				/>
+					style={{backgroundColor: "#FF0000", alignSelf: 'center'}}>
+					Sign Up
+				</Button>
+				<Text/>
 	        </ScrollView>
         );
     }
 
 }
-
 
 class InputBox extends Component {
 	render() {
