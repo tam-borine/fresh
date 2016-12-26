@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Navigator } from 'react-native';
 
-import MyScene from './createPost';
+import MyScene from './mySceneEx';
 //maybe don't have multiple navigation yet....
 class SimpleNavigationApp extends Component {
   render() {

@@ -35,11 +35,10 @@ export default class Feed extends Component {
   _createPost = () => {
   	this.setState(
   	{ newPost: <Post body={this.state.textInput}/>},
-  	() => {this._updateListView(); console.log(this.state.textInput)})
+  	() => {this._updateListView())
   }
 
   _updateListView = () => {
-  	console.log(this.state.newPost)
   	this.state.data.push(this.state.newPost)
   	    this.setState({
       dataSource: this.state.dataSource.cloneWithRows(this.state.data),
@@ -65,9 +64,8 @@ export default class Feed extends Component {
 			<Button
 				onPress={this._getCreatePostPage}
 				title="create post"
-
 			/>
-			<CreatePostScene createPost={this._createPost} updateTextInput={this._updateTextInput}/>
+			<CreatePostScene createPost={this._createPost} updateTextInput={this._updateTextInput}/> 
 
 			</ScrollView>
 			)
