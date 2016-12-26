@@ -9,6 +9,7 @@ import {
 	View,
 	TextInput
 } from 'react-native'
+import { Container, Header, InputGroup, Input, Icon, Button as BaseButton } from 'native-base';
 
 
 export default class Feed extends Component {
@@ -47,6 +48,7 @@ export default class Feed extends Component {
 		// const something = "something"
 		return(
 			<ScrollView>
+			<SearchBar/>
 			<ListView
 				dataSource={this.state.dataSource}
 				renderRow={(rowData) => <Text>{rowData}</Text>}
@@ -66,7 +68,24 @@ export default class Feed extends Component {
 			)
 	}
 }
-
+class SearchBar extends Component {
+    render() {
+        return (
+            <Container>
+                <Header searchBar rounded>
+                    <InputGroup>
+                        <Icon name="ios-search" />
+                        <Input placeholder="Search" />
+                        <Icon name="ios-people" />
+                    </InputGroup>
+                    <BaseButton transparent>
+                        Search
+                    </BaseButton>
+                </Header>
+            </Container>
+        );
+    }
+}
 class Post extends Component {
 	render(){
 		return(
