@@ -29,7 +29,6 @@ export default class Feed extends Component {
       dataSource: ds,
       textInput: "",
       newPost: null,
-      lastPostId: null
     };
   }
 
@@ -38,20 +37,17 @@ export default class Feed extends Component {
       dataSource:this.state.dataSource.cloneWithRows(this.state.data),
     })
   }
-
-	_makeFirPost = () => {
-		firestack.database.ref('posts/testPostId1').set({
-			title: "i am a title",
-			body: this.state.textInput,   
-		});
-		this._readFirPost();
+	_makeFirebasePost = () => {
+		var post = {title: "my first post", body: this.state.textInput}
+		firestack.database.ref().child('posts').push(post).done((newReadyChild) => {
+			this._readFirPost(newReadyChild.key);
+		}, (err) => {console.log('there was an error: '+err)});
 	}
-
-	_readFirPost = () => {
+//if there is time, is there a way to setState of newPost directly in the .done()callback and bypass _readFirPost
+	_readFirPost = (key) => {
 		var value = null
-		firestack.database.ref('posts/testPostId1').on('value', (snapshot) => {
+		firestack.database.ref('posts/'+key).on('value', (snapshot) => {
 			const data = snapshot.val()
-			console.log(data)
 			this.setState({newPost: data.body },
 				() => {this._updateListView()})
 		});
