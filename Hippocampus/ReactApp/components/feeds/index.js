@@ -13,6 +13,12 @@ import {
 import { Container, Header, InputGroup, Input, Icon, Button as BaseButton } from 'native-base';
 //alias BaseButton necesary as we import two Button components and React gets confused...
 
+import Firestack from 'react-native-firestack'
+	const configurationOptions = {
+  		debug: true	};
+	const firestack = new Firestack(configurationOptions);
+	firestack.on('debug', msg => console.log('Received debug message', msg))
+//firestack config ^^
 
 export default class Feed extends Component {
 	 constructor() {
@@ -22,7 +28,8 @@ export default class Feed extends Component {
       data: (["object","another1","third"]),
       dataSource: ds,
       textInput: "",
-      newPost: null
+      newPost: null,
+      lastPostId: null
     };
   }
 
@@ -32,11 +39,23 @@ export default class Feed extends Component {
     })
   }
 
-  _createPost = () => {
-  	this.setState(
-  	{ newPost: <Post body={this.state.textInput}/>},
-  	() => {this._updateListView();})
-  }
+	_makeFirPost = () => {
+		firestack.database.ref('posts/testPostId1').set({
+			title: "i am a title",
+			body: this.state.textInput,   
+		});
+		this._readFirPost();
+	}
+
+	_readFirPost = () => {
+		var value = null
+		firestack.database.ref('posts/testPostId1').on('value', (snapshot) => {
+			const data = snapshot.val()
+			console.log(data)
+			this.setState({newPost: data.body },
+				() => {this._updateListView()})
+		});
+	}
 
   _updateListView = () => {
   	this.state.data.push(this.state.newPost)
@@ -46,7 +65,7 @@ export default class Feed extends Component {
   }
 
   _getCreatePostPage = () =>{
-
+  	//this is invoked by a dumb button at the moment until we make a separate screen for CreatePostPage
   }
 
   _updateTextInput = (text) => {
@@ -63,9 +82,9 @@ export default class Feed extends Component {
 			/>
 			<Button
 				onPress={this._getCreatePostPage}
-				title="create post"
+				title="go to create post page"
 			/>
-			<CreatePostScene createPost={this._createPost} updateTextInput={this._updateTextInput}/> 
+			<CreatePostScene makeFirPost={this._makeFirPost} updateTextInput={this._updateTextInput}/> 
 
 			</ScrollView>
 			)
@@ -107,8 +126,8 @@ class CreatePostScene extends Component {
 				onChangeText={(text) => this.props.updateTextInput(text)}
 			/>
 			<Button
-				onPress={() => this.props.createPost()}
-				title="update list"
+				onPress={() => this.props.makeFirPost()}
+				title="make a post!"
 				color="#841584"
 				accessibilityLabel="Learn more about this purple button"
 			/>
