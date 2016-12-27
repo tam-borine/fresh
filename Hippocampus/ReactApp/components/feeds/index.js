@@ -40,11 +40,11 @@ export default class Feed extends Component {
 	_makeFirebasePost = () => {
 		var post = {title: "my first post", body: this.state.textInput}
 		firestack.database.ref().child('posts').push(post).done((newReadyChild) => {
-			this._readFirPost(newReadyChild.key);
+			this._readFirebasePost(newReadyChild.key);
 		}, (err) => {console.log('there was an error: '+err)});
 	}
 //if there is time, is there a way to setState of newPost directly in the .done()callback and bypass _readFirPost
-	_readFirPost = (key) => {
+	_readFirebasePost = (key) => {
 		var value = null
 		firestack.database.ref('posts/'+key).on('value', (snapshot) => {
 			const data = snapshot.val()
@@ -80,7 +80,7 @@ export default class Feed extends Component {
 				onPress={this._getCreatePostPage}
 				title="go to create post page"
 			/>
-			<CreatePostScene makeFirPost={this._makeFirPost} updateTextInput={this._updateTextInput}/> 
+			<CreatePostScene makeFirebasePost={this._makeFirebasePost} updateTextInput={this._updateTextInput}/> 
 
 			</ScrollView>
 			)
@@ -122,7 +122,7 @@ class CreatePostScene extends Component {
 				onChangeText={(text) => this.props.updateTextInput(text)}
 			/>
 			<Button
-				onPress={() => this.props.makeFirPost()}
+				onPress={() => this.props.makeFirebasePost()}
 				title="make a post!"
 				color="#841584"
 				accessibilityLabel="Learn more about this purple button"
