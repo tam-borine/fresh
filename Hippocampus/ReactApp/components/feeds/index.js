@@ -38,9 +38,9 @@ export default class Feed extends Component {
     })
   }
 	_makeFirebasePost = () => {
-		var post = {title: "my first post", body: this.state.textInput}
-		firestack.database.ref().child('posts').push(post).done((newReadyChild) => {
-			this._readFirebasePost(newReadyChild.key);
+		var post = {author: "Alfie", body: this.state.textInput, inappropriate: false, archived: false, bookmarked: false} //replace Alfie with currentUser
+		firestack.database.ref().child('posts').push(post).done((succ) => {
+			this._readFirebasePost(succ.key);
 		}, (err) => {console.log('there was an error: '+err)});
 	}
 //if there is time, is there a way to setState of newPost directly in the .done()callback and bypass _readFirPost

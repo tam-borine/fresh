@@ -11,7 +11,6 @@ import {
 	Button
 } from 'react-native'
 
-import Ref from '../firebaseRef.js'
 // var auth = require('../oauth.js')
 // import Anonymous from '../anon'
 // import EmailLogin from '../email'
