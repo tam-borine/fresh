@@ -62,8 +62,8 @@ export default class Feed extends Component {
     })
   }
 
-  _getCreatePostPage = () =>{
-		// Just a test method to check routing
+  _updateFeed = () =>{
+		this._readFirebasePost(this.props.text);
   }
 
   _updateTextInput = (text) => {
@@ -78,13 +78,9 @@ export default class Feed extends Component {
 				renderRow={(rowData) => <Text>{rowData}</Text>}
 			/>
 			<Button
-				onPress={this._getCreatePostPage}
-				title="go to create post page"
+				onPress={this._updateFeed}
+				title="Update feed!"
 			/>
-			<View>
-				<Text>{this.state.newPost}</Text>
-			</View>
-
 			</ScrollView>
 			)
 	}
