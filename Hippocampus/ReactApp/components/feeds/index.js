@@ -60,8 +60,8 @@ export default class Feed extends Component {
 	}
 
   _updateListView = () => {
-  	this.state.data.push(this.state.newPost)
   	    this.setState({
+  	    	data: this.state.data.push(this.state.newPost),
       dataSource: this.state.dataSource.cloneWithRows(this.state.data),
     })
   }
