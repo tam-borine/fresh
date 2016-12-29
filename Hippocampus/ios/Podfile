@@ -1,0 +1,40 @@
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+
+def react_native_linkedin_pods
+    pod 'React', :path => '../node_modules/react-native', :subspecs => [
+    'Core',
+    'RCTActionSheet',
+    'RCTCameraRoll',
+    'RCTGeolocation',
+    'RCTImage',
+    'RCTLinkingIOS',
+    'RCTNetwork',
+    'RCTPushNotification',
+    'RCTSettings',
+    'RCTText',
+    'RCTVibration',
+    'RCTWebSocket',
+  ]
+  pod 'react-native-linkedin-login', :path => '../node_modules/react-native-linkedin-login'
+end
+
+def firestack_pods
+  [
+    'Firebase',
+    'Firebase/Core',
+    'Firebase/Auth',
+    'Firebase/Storage',
+    'Firebase/Database',
+    'Firebase/RemoteConfig',
+    'Firebase/Messaging'
+  ].each do |lib|
+    pod lib
+  end
+end
+
+target 'Hippocampus' do
+  react_native_linkedin_pods
+  firestack_pods
+  pod 'DCTAuth', :git => 'https://github.com/danielctull/DCTAuth.git'
+end
