@@ -24,9 +24,13 @@ export default class AddPost extends Component {
   _makeFirebasePost = () => {
     var post = {author: "Alfie", body: this.state.textInput, inappropriate: false, archived: false, bookmarked: false} //replace Alfie with currentUser
     firestack.database.ref().child('posts').push(post).done((succ) => {
-      Actions.feed({text: succ.key});
+      this._feedToFeed(succ.key);
     }, (err) => {console.log('there was an error: '+ err)});
 
+  }
+
+  _feedToFeed = (key) => {
+    Actions.feed({text: key})
   }
 
   render() {
@@ -35,7 +39,7 @@ export default class AddPost extends Component {
       <TextInput
         style={{height: 40}}
         placeholder="Add your post here!"
-        onChangeText={(text) => this._updateTextInput()}
+        onChangeText={(text) => this._updateTextInput(text)}
       />
       <Button
         onPress={() => this._makeFirebasePost()}

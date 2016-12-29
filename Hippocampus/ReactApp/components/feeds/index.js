@@ -34,7 +34,7 @@ export default class Feed extends Component {
   }
 
     componentDidMount(){
-					console.log(this.props.text);
+		console.log(this.props.text);
     this.setState({
       dataSource:this.state.dataSource.cloneWithRows(this.state.data),
     })
@@ -81,9 +81,8 @@ export default class Feed extends Component {
 				onPress={this._getCreatePostPage}
 				title="go to create post page"
 			/>
-			<CreatePostScene makeFirebasePost={this._makeFirebasePost} updateTextInput={this._updateTextInput}/>
 			<View>
-				<Text>{this._readFirebasePost}</Text>
+				<Text>{this.state.newPost}</Text>
 			</View>
 
 			</ScrollView>
