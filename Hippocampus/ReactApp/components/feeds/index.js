@@ -63,7 +63,6 @@ export default class Feed extends Component {
 
   _getCreatePostPage = () =>{
 		// Just a test method to check routing
-		Actions.signInPage();
   }
 
   _updateTextInput = (text) => {
