@@ -33,23 +33,23 @@ export default class Feed extends Component {
     };
   }
 
-  componentWillMount(){ //have added this in and weirdly it doesn't update but by the next method's attempt to setState on key it works?? :S
+  componentWillMount(){ //have added this in and weirdly it works because it occurs earlier i think
   	this.setState({
   		key: this.props.text
-  	})
+  	}, () => this._readFirebasePost(this.state.key) //callback says once you have updated state then call this method
+	)
   	console.log(this.state.key + "<< state.key is still null even though we just updated it")
   }
 
-    componentDidMount(){
+    componentDidMount(){ //i should research lifecycle methods
     this.setState({  
       dataSource:this.state.dataSource.cloneWithRows(this.state.data),
     })
     console.log(this.state.key + '<< by now the state changing has worked')
-    this._readFirebasePost(this.state.key)
   }
 
 //if there is time, is there a way to setState of newPost directly in the .done()callback and bypass _readFirPost
-//children classes can't set state of parents but we can pass through props and hacve it in state here
+//...nah, you managed to get this.props.text in this class so we should be able to somehow give it to _readFirebasePost()
 	_readFirebasePost = (key) => {
 		var value = null
 		firestack.database.ref('posts/'+key).on('value', (snapshot) => {
@@ -95,10 +95,10 @@ class SearchBar extends Component {
         );
     }
 }
-class Post extends Component {
-	render(){
-		return(
-			<Text>{this.props.body}</Text>
-			)
-	}
-}
+// class Post extends Component {
+// 	render(){
+// 		return(
+// 			<Text>{this.props.body}</Text>
+// 			)
+// 	}
+// }
