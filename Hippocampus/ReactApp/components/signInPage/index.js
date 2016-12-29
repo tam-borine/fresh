@@ -37,6 +37,3 @@ export default class SignInPage extends Component {
 			)
 	}
 }
-
-
-

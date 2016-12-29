@@ -11,6 +11,7 @@ import {
 	TextInput
 } from 'react-native'
 import { Container, Header, InputGroup, Input, Icon, Button as BaseButton } from 'native-base';
+import { Actions } from 'react-native-router-flux'
 //alias BaseButton necesary as we import two Button components and React gets confused...
 
 import Firestack from 'react-native-firestack'
@@ -61,7 +62,8 @@ export default class Feed extends Component {
   }
 
   _getCreatePostPage = () =>{
-  	//this is invoked by a dumb button at the moment until we make a separate screen for CreatePostPage
+		// Just a test method to check routing
+		Actions.signInPage();
   }
 
   _updateTextInput = (text) => {
@@ -80,7 +82,7 @@ export default class Feed extends Component {
 				onPress={this._getCreatePostPage}
 				title="go to create post page"
 			/>
-			<CreatePostScene makeFirebasePost={this._makeFirebasePost} updateTextInput={this._updateTextInput}/> 
+			<CreatePostScene makeFirebasePost={this._makeFirebasePost} updateTextInput={this._updateTextInput}/>
 
 			</ScrollView>
 			)
