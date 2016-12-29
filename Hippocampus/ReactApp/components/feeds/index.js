@@ -22,30 +22,34 @@ import Firestack from 'react-native-firestack'
 //firestack config ^^
 
 export default class Feed extends Component {
-	 constructor() {
-    super();
+	 constructor(props) {
+    super(props);
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       data: (["object","another1","third"]),
       dataSource: ds,
-      textInput: "",
+      key: null,
       newPost: null,
     };
   }
 
+  componentWillMount(){ //have added this in and weirdly it doesn't update but by the next method's attempt to setState on key it works?? :S
+  	this.setState({
+  		key: this.props.text
+  	})
+  	console.log(this.state.key + "<< state.key is still null even though we just updated it")
+  }
+
     componentDidMount(){
-		console.log(this.props.text);
-    this.setState({
+    this.setState({  
       dataSource:this.state.dataSource.cloneWithRows(this.state.data),
     })
+    console.log(this.state.key + '<< by now the state changing has worked')
+    this._readFirebasePost(this.state.key)
   }
-	_makeFirebasePost = () => {
-		var post = {author: "Alfie", body: this.state.textInput, inappropriate: false, archived: false, bookmarked: false} //replace Alfie with currentUser
-		firestack.database.ref().child('posts').push(post).done((succ) => {
-			this._readFirebasePost(succ.key);
-		}, (err) => {console.log('there was an error: '+err)});
-	}
+
 //if there is time, is there a way to setState of newPost directly in the .done()callback and bypass _readFirPost
+//children classes can't set state of parents but we can pass through props and hacve it in state here
 	_readFirebasePost = (key) => {
 		var value = null
 		firestack.database.ref('posts/'+key).on('value', (snapshot) => {
@@ -62,24 +66,12 @@ export default class Feed extends Component {
     })
   }
 
-  _updateFeed = () =>{
-		this._readFirebasePost(this.props.text);
-  }
-
-  _updateTextInput = (text) => {
-  	this.setState({textInput: text})
-  }
-
 	render(){
 		return(
 			<ScrollView>
 			<ListView
 				dataSource={this.state.dataSource}
 				renderRow={(rowData) => <Text>{rowData}</Text>}
-			/>
-			<Button
-				onPress={this._updateFeed}
-				title="Update feed!"
 			/>
 			</ScrollView>
 			)
@@ -108,26 +100,5 @@ class Post extends Component {
 		return(
 			<Text>{this.props.body}</Text>
 			)
-	}
-}
-
-class CreatePostScene extends Component {
-	render(){
-		return(
-			<View>
-			<TextInput
-				style={{height: 40}}
-				placeholder="Type here to add a post!"
-				onChangeText={(text) => this.props.updateTextInput(text)}
-			/>
-			<Button
-				onPress={() => this.props.makeFirebasePost()}
-				title="make a post!"
-				color="#841584"
-				accessibilityLabel="Learn more about this purple button"
-			/>
-			</View>
-
-		)
 	}
 }

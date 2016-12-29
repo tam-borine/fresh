@@ -12,13 +12,13 @@ export default class RouterComponent extends Component {
       <Router sceneStyle={{paddingTop: 65}}>
           <Scene key="signInPage" component={SignInPage} title="Sign in"/>
           <Scene
-            onRight={() => Actions.addPost()}
+            onRight={() => {Actions.addPost()}}
             rightTitle="Add"
             key="feed"
             component={Feed}
             title="Feed"
           />
-          <Scene key="addPost" component={AddPost} title="Add post" initial/>
+          <Scene key="addPost" component={AddPost} title="Add post" initial />
       </Router>
     )
   }
