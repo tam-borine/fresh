@@ -17,9 +17,8 @@ export default class RouterComponent extends Component {
             key="feed"
             component={Feed}
             title="Feed"
-            initial
           />
-          <Scene key="addPost" component={AddPost} title="Add post"/>
+          <Scene key="addPost" component={AddPost} title="Add post" initial/>
       </Router>
     )
   }
