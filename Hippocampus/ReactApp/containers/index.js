@@ -16,7 +16,7 @@ import {
 // import EmailLogin from '../email'
 // import Example from '../linkedIn.js'
 // import SignInPage from '../components/signInPage/index'
-// import Feed from '../components/feeds/index'
+import Feed from '../components/feeds/index'
 import Test from '../components/sidemenu/index'
 import NavigationBar from 'react-native-navbar'
 import SideMenu from 'react-native-side-menu'
