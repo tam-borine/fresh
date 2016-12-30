@@ -22,8 +22,18 @@ export default class AddPost extends Component {
   }
 
   _makeFirebasePost = () => {
-    var post = {author: "Alfie", body: this.state.textInput, inappropriate: false, archived: false, bookmarked: false} //replace Alfie with currentUser
-    firestack.database.ref().child('posts').push(post).done((succ) => {
+
+     //replace Alfie with currentUser
+    firestack.database.ref().child('posts').push(
+      {
+      author: "Alfie", 
+      body: this.state.textInput,
+      inappropriate: false,
+      archived: false,
+      bookmarked: false,
+      timestamp: (0 - new Date().getTime())
+      }
+      ).done((succ) => {
       Actions.pop({refresh: {}});
     }, (err) => {console.log('there was an error: '+ err)});
 
