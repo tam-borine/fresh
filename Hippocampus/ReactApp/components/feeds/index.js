@@ -25,10 +25,8 @@ import Firestack from 'react-native-firestack'
 export default class Feed extends Component {
 	 constructor(props) {
     super(props);
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      data: (["object","another1","third"]),
-      dataSource: ds,
+      data: new Array(),
       key: null,
       newPost: null,
     };
@@ -39,48 +37,48 @@ export default class Feed extends Component {
   componentWillMount(){ //have added this in and weirdly it works because it occurs earlier i think
   	this.setState({
   		key: this.props.text
-  	}, () => this._readFirebasePost(this.state.key) //callback says once you have updated state then call this method
+  	}, () => this._updateFeedFromFirebase() //callback says once you have updated state then call this method
 	)
-  	console.log(this.state.key + "<< state.key is still null even though we just updated it")
   }
 
-    componentDidMount(){ //i should research lifecycle methods
-    this.setState({
-      dataSource:this.state.dataSource.cloneWithRows(this.state.data),
-    })
-    console.log(this.state.key + '<< by now the state changing has worked')
-  }
+	// Get back ten latest posts, for each one map and push them into data array
 
-//if there is time, is there a way to setState of newPost directly in the .done()callback and bypass _readFirPost
-//...nah, you managed to get this.props.text in this class so we should be able to somehow give it to _readFirebasePost()
-// lol i think you wrote the first comment - alfie
-	_readFirebasePost = (key) => {
+	_updateFeedFromFirebase = () => {
 		var value = null
-		firestack.database.ref('posts/'+key).on('value', (snapshot) => {
-			const data = snapshot.val()
-			this.setState({newPost: data.body },
-				() => {this._updateListView()})
-		});
+		firestack.database.ref('posts').on('value', (snapshot) => {
+			var object = snapshot.value
+			this._extractIntoArray(object)
+		})
 	}
 
-  _updateListView = () => {
-  	    this.setState({
-  	    	data: this.state.data.push(this.state.newPost),
-      dataSource: this.state.dataSource.cloneWithRows(this.state.data),
-    })
-  }
+	_extractIntoArray = (target) => {
+		const self = this
+		for (var k in target){
+		var arrCopy = self.state.data.slice();
+			arrCopy.push(target[k])
+				self.setState({
+					data: arrCopy,
+				})
+		}
+	}
+
+
+	_renderPosts = (rowData) => {
+	  return rowData.map((key, value) => {
+	    return (<Card>{value.title} {value.body}</Card>)
+	  });
+	}
+
 
 	render(){
 		return(
 			<ScrollView>
-			<Card>
-				dataSource={this.state.dataSource}
-				renderRow={(rowData) => <Text>{rowData}</Text>}
-			</Card>
+					{this._renderPosts(this.state.data)}
 			</ScrollView>
 			)
 	}
 }
+
 class SearchBar extends Component {
     render() {
         return (
