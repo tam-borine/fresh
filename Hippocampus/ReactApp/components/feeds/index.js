@@ -12,6 +12,7 @@ import {
 } from 'react-native'
 import { Container, Header, InputGroup, Input, Icon, Button as BaseButton } from 'native-base';
 import { Actions } from 'react-native-router-flux'
+import { Card } from '../cards/card'
 //alias BaseButton necesary as we import two Button components and React gets confused...
 
 import Firestack from 'react-native-firestack'
@@ -33,6 +34,8 @@ export default class Feed extends Component {
     };
   }
 
+	// componentWillMount called when rendering on server, componentDidMount on client
+
   componentWillMount(){ //have added this in and weirdly it works because it occurs earlier i think
   	this.setState({
   		key: this.props.text
@@ -42,7 +45,7 @@ export default class Feed extends Component {
   }
 
     componentDidMount(){ //i should research lifecycle methods
-    this.setState({  
+    this.setState({
       dataSource:this.state.dataSource.cloneWithRows(this.state.data),
     })
     console.log(this.state.key + '<< by now the state changing has worked')
@@ -50,6 +53,7 @@ export default class Feed extends Component {
 
 //if there is time, is there a way to setState of newPost directly in the .done()callback and bypass _readFirPost
 //...nah, you managed to get this.props.text in this class so we should be able to somehow give it to _readFirebasePost()
+// lol i think you wrote the first comment - alfie
 	_readFirebasePost = (key) => {
 		var value = null
 		firestack.database.ref('posts/'+key).on('value', (snapshot) => {
@@ -69,10 +73,10 @@ export default class Feed extends Component {
 	render(){
 		return(
 			<ScrollView>
-			<ListView
+			<Card>
 				dataSource={this.state.dataSource}
 				renderRow={(rowData) => <Text>{rowData}</Text>}
-			/>
+			</Card>
 			</ScrollView>
 			)
 	}

@@ -29,6 +29,8 @@ export default class AddPost extends Component {
 
   }
 
+  // Is _ feedtoFeed needed?
+
   _feedToFeed = (key) => {
     Actions.feed({text: key})
   }
