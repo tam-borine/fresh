@@ -60,21 +60,22 @@ export default class Feed extends Component {
 					data: arrCopy,
 				})
 		}
-		console.log(this.state.data);
 	}
 
 
-	_renderPosts = (rowData) => {
-	  return rowData.map((key, value) => {
-	    return (<Card>{value.title} {value.body}</Card>)
-	  });
+	_renderPosts = () => {
+	  return this.state.data.map(post =>
+			<Text key={post.title}>{post.body}</Text>
+		)
 	}
 
 
 	render(){
 		return(
 			<ScrollView>
-					<Text>Hi</Text>
+				<View>
+					{this._renderPosts()}
+				</View>
 			</ScrollView>
 			)
 	}
