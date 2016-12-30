@@ -60,6 +60,7 @@ export default class Feed extends Component {
 					data: arrCopy,
 				})
 		}
+		console.log(this.state.data);
 	}
 
 
@@ -73,7 +74,7 @@ export default class Feed extends Component {
 	render(){
 		return(
 			<ScrollView>
-					{this._renderPosts(this.state.data)}
+					<Text>Hi</Text>
 			</ScrollView>
 			)
 	}
