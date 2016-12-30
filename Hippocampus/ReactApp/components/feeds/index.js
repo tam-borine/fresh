@@ -12,7 +12,8 @@ import {
 } from 'react-native'
 import { Container, Header, InputGroup, Input, Icon, Button as BaseButton } from 'native-base';
 import { Actions } from 'react-native-router-flux'
-import { Card } from '../cards/card'
+import Card from '../cards/card'
+import CardDetail from '../cards/cardDetail'
 //alias BaseButton necesary as we import two Button components and React gets confused...
 
 import Firestack from 'react-native-firestack'
@@ -65,7 +66,7 @@ export default class Feed extends Component {
 
 	_renderPosts = () => {
 	  return this.state.data.map(post =>
-			<Text key={post.title}>{post.body}</Text>
+			<CardDetail key={post.title} post={post}/>
 		)
 	}
 
