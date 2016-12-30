@@ -4,11 +4,8 @@ import React, {Component} from 'react'
 import {
 	Navigator,
 	ScrollView,
-	ListView,
 	Text,
-	Button,
 	View,
-	TextInput
 } from 'react-native'
 import { Container, Header, InputGroup, Input, Icon, Button as BaseButton } from 'native-base';
 import { Actions } from 'react-native-router-flux'
@@ -28,18 +25,13 @@ export default class Feed extends Component {
     super(props);
     this.state = {
       data: new Array(),
-      key: null,
-      newPost: null,
     };
   }
 
 	// componentWillMount called when rendering on server, componentDidMount on client
 
-  componentWillMount(){ //have added this in and weirdly it works because it occurs earlier i think
-  	this.setState({
-  		key: this.props.text
-  	}, () => this._updateFeedFromFirebase() //callback says once you have updated state then call this method
-	)
+  componentWillMount(){
+  	this._updateFeedFromFirebase()
   }
 
 	// Get back ten latest posts, for each one map and push them into data array
@@ -100,10 +92,3 @@ class SearchBar extends Component {
         );
     }
 }
-// class Post extends Component {
-// 	render(){
-// 		return(
-// 			<Text>{this.props.body}</Text>
-// 			)
-// 	}
-// }

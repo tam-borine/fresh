@@ -24,16 +24,11 @@ export default class AddPost extends Component {
   _makeFirebasePost = () => {
     var post = {author: "Alfie", body: this.state.textInput, inappropriate: false, archived: false, bookmarked: false} //replace Alfie with currentUser
     firestack.database.ref().child('posts').push(post).done((succ) => {
-      this._feedToFeed(succ.key);
+      Actions.pop({refresh: {}});
     }, (err) => {console.log('there was an error: '+ err)});
 
   }
 
-  // Is _ feedtoFeed needed?
-
-  _feedToFeed = (key) => {
-    Actions.feed({text: key})
-  }
 
   render() {
     return (
