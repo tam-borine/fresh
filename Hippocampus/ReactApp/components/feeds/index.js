@@ -4,7 +4,6 @@ import React, {Component} from 'react'
 import {
 	Navigator,
 	ScrollView,
-	Text,
 	View,
 } from 'react-native'
 import { Container, Header, InputGroup, Input, Icon, Button as BaseButton } from 'native-base';
@@ -18,7 +17,7 @@ import Firestack from 'react-native-firestack'
   		debug: true	};
 	const firestack = new Firestack(configurationOptions);
 	firestack.on('debug', msg => console.log('Received debug message', msg))
-//firestack config ^^
+//firestack config ^^ //we need a global solution for this
 
 export default class Feed extends Component {
 	 constructor(props) {
@@ -28,18 +27,17 @@ export default class Feed extends Component {
     };
   }
 
-	// componentWillMount called when rendering on server, componentDidMount on client
-
   componentWillMount(){
   	this._updateFeedFromFirebase()
   }
-
 	// Get back ten latest posts, for each one map and push them into data array
 
 	_updateFeedFromFirebase = () => {
 		var value = null
-		firestack.database.ref('posts').on('value', (snapshot) => {
+		firestack.database.ref('posts').orderByChild('timestamp').on('value', (snapshot) => {
 			var object = snapshot.value
+			console.log(object)
+			console.log("object fir above")
 			this._extractIntoArray(object)
 		})
 	}
@@ -57,8 +55,9 @@ export default class Feed extends Component {
 
 
 	_renderPosts = () => {
+
 	  return this.state.data.map(post =>
-			<CardDetail key={post.title} post={post}/>
+			<CardDetail key={post.timestamp} post={post}/>
 		)
 	}
 
