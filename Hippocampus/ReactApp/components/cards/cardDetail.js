@@ -9,18 +9,23 @@ const CardDetail = (props) => {
 
 // Destructuring styles as it's used twice, can do this later with props
 
-  const { thumbnailStyle, headerContentStyle } = styles;
+  const {
+    thumbnailStyle,
+    headerContentStyle,
+    thumbnailContainerStyle,
+    headerTextStyle
+  } = styles;
 
   return (
     <Card>
       <CardSection>
-        <View>
+        <View style={thumbnailContainerStyle}>
           <Image style={thumbnailStyle}
             source={{ uri: "" }}
           />
         </View>
         <View style={headerContentStyle}>
-          <Text>Alfie Bullmore</Text>
+          <Text style={headerTextStyle}>Alfie Bullmore</Text>
           <Text>@makersAcademyGroup</Text>
         </View>
       </CardSection>
@@ -36,9 +41,19 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'space-around'
   },
+  headerTextStyle: {
+    fontSize: 16,
+    fontWeight: 'bold'
+  },
   thumbnailStyle: {
     height: 50,
     width: 50
+  },
+  thumbnailContainerStyle: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 10,
+    marginRight: 10
   }
 }
 
