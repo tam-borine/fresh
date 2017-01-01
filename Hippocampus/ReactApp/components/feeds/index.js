@@ -35,27 +35,30 @@ export default class Feed extends Component {
 	_updateFeedFromFirebase = () => {
 		var value = null
 		firestack.database.ref('posts').orderByChild('timestamp').on('value', (snapshot) => {
-			var object = snapshot.value
-			console.log(object)
+			var objectOfPostObjects = snapshot.value
+			console.log(objectOfPostObjects)
 			console.log("object fir above")
-			this._extractIntoArray(object)
+			this._extractIntoArray(objectOfPostObjects)
 		})
 	}
 
-	_extractIntoArray = (target) => {
-		const self = this
-		for (var k in target){
-		var arrCopy = self.state.data.slice();
-			arrCopy.push(target[k])
-				self.setState({
-					data: arrCopy,
-				})
+	_extractIntoArray = (objectOfPostObjects) => {
+		// const self = this
+		var arrCopy = [];
+		for (var k in objectOfPostObjects){
+			arrCopy.push(objectOfPostObjects[k])
 		}
+		arrCopy = arrCopy.sort((l,r) => {
+			return l.timestamp < r.timestamp
+		})
+		this.setState({
+			data: arrCopy,
+		})
 	}
 
 
-	_renderPosts = () => {
 
+	_renderPosts = () => {
 	  return this.state.data.map(post =>
 			<CardDetail key={post.timestamp} post={post}/>
 		)

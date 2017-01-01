@@ -26,12 +26,12 @@ export default class AddPost extends Component {
      //replace Alfie with currentUser
     firestack.database.ref().child('posts').push(
       {
-      author: "Alfie", 
+      author: "Alfie",
       body: this.state.textInput,
       inappropriate: false,
       archived: false,
       bookmarked: false,
-      timestamp: (0 - new Date().getTime())
+      timestamp: (new Date().getTime())
       }
       ).done((succ) => {
       Actions.pop({refresh: {}});
