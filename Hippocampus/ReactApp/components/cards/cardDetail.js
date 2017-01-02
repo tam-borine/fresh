@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Text, View, Image } from 'react-native';
 import Card from './card'
 import CardSection from './cardSection'
@@ -6,22 +6,17 @@ import Button from './cardButton'
 import { Actions } from 'react-native-router-flux'
 import Menu, { MenuContext, MenuOptions, MenuOption, MenuTrigger } from 'react-native-menu'
 
-const MenuConfig = () => (
-  <MenuContext style={{ flex: 1 }}>
-    <TopNavigation/>
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-    <Text>Hello!</Text></View>
-  </MenuContext>
-)
 
+// <View style={{ padding: 5, flexDirection: 'row', backgroundColor: 'pink' }}>
+  // <View style={{ flex: 1 }}><Text>My App</Text></View>
+//style={{ flex: 1 }}  <<Menu context
+  //style={{ flex: 3, justifyContent: 'flex-end', alignItems: 'flex-end' }} <<View after TopNavigation invoked
 const TopNavigation = () => (
-  <View style={{ padding: 10, flexDirection: 'row', backgroundColor: 'pink' }}>
-    <View style={{ flex: 1 }}><Text>My App</Text></View>
     <Menu onSelect={(value) => alert(`User selected the number`)}>
       <MenuTrigger>
         <Text style={{ fontSize: 20 }}>&#8942;</Text>
       </MenuTrigger>
-      <MenuOptions>
+      <MenuOptions optionsContainerStyle={{ zIndex: 50 }}>
         <MenuOption value={1}>
           <Text>One</Text>
         </MenuOption>
@@ -30,25 +25,20 @@ const TopNavigation = () => (
         </MenuOption>
       </MenuOptions>
     </Menu>
-  </View>
 );
 // Below is hard coded just for styling purposes, will need to make it flexible later
 // URI is empty to just show where image will go
 const CardDetail = (props) => {
-
+const {
+  thumbnailContainerStyle,
+  thumbnailStyle,
+  headerContentStyle,
+  headerTextStyle
+} = styles;
 // Destructuring styles as it's used twice, can do this later with props
-
-  const {
-    thumbnailStyle,
-    headerContentStyle,
-    thumbnailContainerStyle,
-    headerTextStyle
-  } = styles;
-
   return (
     <Card>
-      <CardSection>
-        <MenuConfig/>
+      <CardSection style={{zIndex: 1}}>
         <View style={thumbnailContainerStyle}>
           <Image style={thumbnailStyle}
             source={{ uri: "" }}
@@ -58,16 +48,20 @@ const CardDetail = (props) => {
           <Text style={headerTextStyle}>Alfie Bullmore</Text>
           <Text>@makersAcademyGroup</Text>
         </View>
+        <MenuContext style={{ flex:1, zIndex:6, position:'absolute', flexDirection: 'column', alignItems: 'flex-end' }} >
+          <TopNavigation/>
+        </MenuContext>
       </CardSection>
-      <CardSection>
-        <Text>{props.post.body}</Text>
-      </CardSection>
-      <CardSection>
-        <Button onPress={() => console.log("This will redirect to comments page")}/>
+      <CardSection style={{zIndex: 1}}>
+        <Text style={{zIndex: 2}}>{props.post.body}</Text>
       </CardSection>
     </Card>
   )
 }
+
+
+
+
 
 const styles = {
   headerContentStyle: {

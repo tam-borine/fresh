@@ -43,7 +43,6 @@ export default class Feed extends Component {
 	}
 
 	_extractIntoArray = (objectOfPostObjects) => {
-		// const self = this
 		var arrCopy = [];
 		for (var k in objectOfPostObjects){
 			arrCopy.push(objectOfPostObjects[k])
@@ -56,14 +55,11 @@ export default class Feed extends Component {
 		})
 	}
 
-
-
 	_renderPosts = () => {
 	  return this.state.data.map(post =>
 			<CardDetail key={post.timestamp} post={post}/>
 		)
 	}
-
 
 	render(){
 		return(
