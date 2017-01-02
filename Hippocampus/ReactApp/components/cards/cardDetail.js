@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, Image } from 'react-native';
 import Card from './card'
 import CardSection from './cardSection'
+import Button from './cardButton'
 
 // Below is hard coded just for styling purposes, will need to make it flexible later
 // URI is empty to just show where image will go
@@ -31,6 +32,9 @@ const CardDetail = (props) => {
       </CardSection>
       <CardSection>
         <Text>{props.post.body}</Text>
+      </CardSection>
+      <CardSection>
+        <Button/>
       </CardSection>
     </Card>
   )
