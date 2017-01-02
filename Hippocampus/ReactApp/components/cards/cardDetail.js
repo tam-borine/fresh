@@ -34,7 +34,7 @@ const CardDetail = (props) => {
         <Text>{props.post.body}</Text>
       </CardSection>
       <CardSection>
-        <Button/>
+        <Button onPress={() => console.log("Pressed")}/>
       </CardSection>
     </Card>
   )
