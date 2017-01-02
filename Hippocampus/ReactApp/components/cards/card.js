@@ -11,6 +11,7 @@ const Card = (props) => {
 
 const styles = {
   containerStyle: {
+     opacity: 0.99,
      zIndex: -1,
      position: 'relative',
      borderWidth: 1,
