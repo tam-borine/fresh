@@ -79,7 +79,8 @@ const {
 const styles = {
   bookmarkIconStyle: {
     backgroundColor: 'red',
-    marginRight: 10
+    width: 20,
+    height: 20
   },
   headerContentStyle: {
     flexDirection: 'column',
