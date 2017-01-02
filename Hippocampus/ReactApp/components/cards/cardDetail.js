@@ -4,7 +4,34 @@ import Card from './card'
 import CardSection from './cardSection'
 import Button from './cardButton'
 import { Actions } from 'react-native-router-flux'
+import Menu, { MenuContext, MenuOptions, MenuOption, MenuTrigger } from 'react-native-menu'
 
+const MenuConfig = () => (
+  <MenuContext style={{ flex: 1 }}>
+    <TopNavigation/>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <Text>Hello!</Text></View>
+  </MenuContext>
+)
+
+const TopNavigation = () => (
+  <View style={{ padding: 10, flexDirection: 'row', backgroundColor: 'pink' }}>
+    <View style={{ flex: 1 }}><Text>My App</Text></View>
+    <Menu onSelect={(value) => alert(`User selected the number`)}>
+      <MenuTrigger>
+        <Text style={{ fontSize: 20 }}>&#8942;</Text>
+      </MenuTrigger>
+      <MenuOptions>
+        <MenuOption value={1}>
+          <Text>One</Text>
+        </MenuOption>
+        <MenuOption value={2}>
+          <Text>Two</Text>
+        </MenuOption>
+      </MenuOptions>
+    </Menu>
+  </View>
+);
 // Below is hard coded just for styling purposes, will need to make it flexible later
 // URI is empty to just show where image will go
 const CardDetail = (props) => {
@@ -21,6 +48,7 @@ const CardDetail = (props) => {
   return (
     <Card>
       <CardSection>
+        <MenuConfig/>
         <View style={thumbnailContainerStyle}>
           <Image style={thumbnailStyle}
             source={{ uri: "" }}
