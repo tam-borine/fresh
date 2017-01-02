@@ -3,6 +3,7 @@ import { Text, View, Image } from 'react-native';
 import Card from './card'
 import CardSection from './cardSection'
 import Button from './cardButton'
+import { Actions } from 'react-native-router-flux'
 
 // Below is hard coded just for styling purposes, will need to make it flexible later
 // URI is empty to just show where image will go
@@ -34,7 +35,7 @@ const CardDetail = (props) => {
         <Text>{props.post.body}</Text>
       </CardSection>
       <CardSection>
-        <Button onPress={() => console.log("Pressed")}/>
+        <Button onPress={() => console.log("This will redirect to comments page")}/>
       </CardSection>
     </Card>
   )
