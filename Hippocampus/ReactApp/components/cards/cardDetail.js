@@ -23,31 +23,26 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
   //style={{ flex: 3, justifyContent: 'flex-end', alignItems: 'flex-end' }} <<View after TopNavigation invoked
 const TopNavigation = () => (
 
-  const {
-    bookmarkIconStyle,
-    reportIconStyle,
-    cancelIconStyle
-  } = styles;
 
-    <Menu onSelect={(value) => alert(`User selected the number`)}>
+    <Menu>
       <MenuTrigger>
         <Text style={{ fontSize: 20 }}>&#8942;</Text>
       </MenuTrigger>
       <MenuOptions optionsContainerStyle={{ zIndex: 50 }}>
         <MenuOption value={1}>
-          <Icon.Button style={bookmarkIconStyle}
+          <Icon.Button style={styles.bookmarkIconStyle}
             name="bookmark"
             onPress={() => console.log("You have bookmarked this post")}
           />
         </MenuOption>
         <MenuOption value={2}>
-          <Icon.Button style={reportIconStyle}
+          <Icon.Button style={styles.reportIconStyle}
             name="report"
             onPress={() => console.log("You have reported this post")}
           />
         </MenuOption>
-        <MenuOption value={3}
-          <Icon.Button style={cancelIconStyle}
+        <MenuOption value={3}>
+          <Icon.Button style={styles.cancelIconStyle}
             name="cancel"
             onPress={() => console.log("Cancelled")}
           />
@@ -89,9 +84,6 @@ const {
 }
 
 
-
-
-
 const styles = {
   bookmarkIconStyle: {
     backgroundColor: 'red',
@@ -99,10 +91,14 @@ const styles = {
     height: 20
   },
   reportIconStyle: {
-
+    backgroundColor: 'red'
+    width: 20,
+    height: 20
   },
   cancelIconStyle: {
-
+    backgroundColor: 'red'
+    width: 20,
+    height: 20
   },
   headerContentStyle: {
     flexDirection: 'column',
