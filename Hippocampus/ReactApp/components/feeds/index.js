@@ -10,6 +10,7 @@ import { Container, Header, InputGroup, Input, Icon, Button as BaseButton } from
 import { Actions } from 'react-native-router-flux'
 import Card from '../cards/card'
 import CardDetail from '../cards/cardDetail'
+import {MenuContext} from 'react-native-popup-menu';
 //alias BaseButton necesary as we import two Button components and React gets confused...
 
 import Firestack from 'react-native-firestack'
@@ -65,7 +66,9 @@ export default class Feed extends Component {
 		return(
 			<ScrollView>
 				<View>
-					{this._renderPosts()}
+					<MenuContext>
+					  {this._renderPosts()}
+				  </MenuContext>
 				</View>
 			</ScrollView>
 			)

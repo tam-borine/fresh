@@ -11,8 +11,6 @@ const Card = (props) => {
 
 const styles = {
   containerStyle: {
-     zIndex: -1,
-     position: 'relative',
      borderWidth: 1,
      borderRadius: 2,
      borderColor: '#ddd',
