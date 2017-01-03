@@ -6,7 +6,7 @@ import Button from './cardButton'
 import { Actions } from 'react-native-router-flux'
 import Menu, { MenuOptions, MenuOption, MenuTrigger } from 'react-native-popup-menu'
 import Icon from 'react-native-vector-icons/MaterialIcons';
-
+var firebaseHelpers = require('../../firebaseHelpers')
 
 const DropDown = () => (
     <Menu
@@ -28,7 +28,7 @@ const DropDown = () => (
         <MenuOption value={2} style={{alignItems: 'center', flexDirection: 'row'}}>
           <Icon.Button
             name="report"
-            onPress={() => console.log("You have reported this post")}
+            onPress={() => firebaseHelpers._updateEntry()}
             backgroundColor='red'
             iconStyle={{marginRight: 2}}
           />
