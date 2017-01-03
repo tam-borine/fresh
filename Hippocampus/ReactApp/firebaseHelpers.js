@@ -10,4 +10,5 @@ import Firestack from 'react-native-firestack'
 module.exports._updateEntry = (table, key, newData) => {
   firestack.database.ref(table).child(key).update(newData);
 }
-//need to get key through not hardcode when we invoke this in cardDetail
+
+// Is the button a cancel button or an archived button?

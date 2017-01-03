@@ -24,7 +24,7 @@ export default class Feed extends Component {
 	 constructor(props) {
     super(props);
     this.state = {
-      data: new Array(),
+      data: new Array()
     };
   }
 
@@ -37,8 +37,6 @@ export default class Feed extends Component {
 		var value = null
 		firestack.database.ref('posts').orderByChild('timestamp').on('value', (snapshot) => {
 			var objectOfPostObjects = snapshot.value
-			console.log(objectOfPostObjects)
-			console.log("object fir above")
 			this._extractIntoArray(objectOfPostObjects)
 		})
 	}
@@ -46,10 +44,12 @@ export default class Feed extends Component {
 	_extractIntoArray = (objectOfPostObjects) => {
 		var arrCopy = [];
 		for (var k in objectOfPostObjects){
-			arrCopy.push(objectOfPostObjects[k])
+			arrCopy.push([k, objectOfPostObjects[k]])
 		}
 		arrCopy = arrCopy.sort((l,r) => {
-			return l.timestamp < r.timestamp
+			var left = l[1]
+			var right = r[1]
+			return left.timestamp < right.timestamp
 		})
 		this.setState({
 			data: arrCopy,
@@ -57,8 +57,9 @@ export default class Feed extends Component {
 	}
 
 	_renderPosts = () => {
+		console.log(this.state.data);
 	  return this.state.data.map(post =>
-			<CardDetail key={post.timestamp} post={post}/>
+			<CardDetail key={post[0]} post={post[1]} primaryKey={post[0]}/>
 		)
 	}
 

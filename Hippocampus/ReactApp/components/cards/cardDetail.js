@@ -8,7 +8,7 @@ import Menu, { MenuOptions, MenuOption, MenuTrigger } from 'react-native-popup-m
 import Icon from 'react-native-vector-icons/MaterialIcons';
 var firebaseHelpers = require('../../firebaseHelpers')
 
-const DropDown = () => (
+const DropDown = (props) => (
     <Menu
         style={{ flex:1, flexDirection: 'column', alignItems: 'flex-end' }}
         onSelect={(value) => console.log(`User selected the number`)}>
@@ -19,7 +19,7 @@ const DropDown = () => (
         <MenuOption value={1} style={{alignItems: 'center', flexDirection: 'row'}}>
           <Icon.Button
             name="bookmark"
-            onPress={() => firebaseHelpers._updateEntry('posts', '-K_QF4vG8tiImU5W42K7', {'bookmarked': true})}
+            onPress={() => firebaseHelpers._updateEntry('posts', props.primaryKey, {'bookmarked': true})}
             backgroundColor='red'
             iconStyle={{marginRight: 2}}
           />
@@ -28,7 +28,7 @@ const DropDown = () => (
         <MenuOption value={2} style={{alignItems: 'center', flexDirection: 'row'}}>
           <Icon.Button
             name="report"
-            onPress={() => firebaseHelpers._updateEntry('posts', '-K_QF4vG8tiImU5W42K7', {'inappropriate': true})}
+            onPress={() => firebaseHelpers._updateEntry('posts', props.primaryKey, {'inappropriate': true})}
             backgroundColor='red'
             iconStyle={{marginRight: 2}}
           />
@@ -37,7 +37,7 @@ const DropDown = () => (
         <MenuOption value={3} style={{alignItems: 'center', flexDirection: 'row'}}>
           <Icon.Button
             name="cancel"
-            onPress={() => firebaseHelpers._updateEntry('posts', '-K_QF4vG8tiImU5W42K7', {'archived': true})}
+            onPress={() => firebaseHelpers._updateEntry('posts', props.primaryKey, {'archived': true})}
             backgroundColor='red'
             iconStyle={{marginRight: 2}}
           />
@@ -79,7 +79,7 @@ const {
             <Text style={headerTextStyle}>Tam</Text>
             <Text>tam@tam</Text>
           </View>
-          <DropDown/>
+          <DropDown k={props.primaryKey}/>
         </CardSection>
         <CardSection >
           <Text >{props.post.body}</Text>
