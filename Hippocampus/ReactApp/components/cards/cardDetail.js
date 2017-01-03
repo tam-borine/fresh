@@ -19,7 +19,7 @@ const DropDown = () => (
         <MenuOption value={1} style={{alignItems: 'center', flexDirection: 'row'}}>
           <Icon.Button
             name="bookmark"
-            onPress={() => console.log("You have bookmarked this post")}
+            onPress={() => firebaseHelpers._updateEntry('posts', '-K_QF4vG8tiImU5W42K7', {'bookmarked': true})}
             backgroundColor='red'
             iconStyle={{marginRight: 2}}
           />
@@ -28,7 +28,7 @@ const DropDown = () => (
         <MenuOption value={2} style={{alignItems: 'center', flexDirection: 'row'}}>
           <Icon.Button
             name="report"
-            onPress={() => firebaseHelpers._updateEntry('posts', '-K_Q6j1BjtSjMSFhqqkt', 'inappropriate')}
+            onPress={() => firebaseHelpers._updateEntry('posts', '-K_QF4vG8tiImU5W42K7', {'inappropriate': true})}
             backgroundColor='red'
             iconStyle={{marginRight: 2}}
           />
@@ -37,11 +37,11 @@ const DropDown = () => (
         <MenuOption value={3} style={{alignItems: 'center', flexDirection: 'row'}}>
           <Icon.Button
             name="cancel"
-            onPress={() => console.log("Cancelled")}
+            onPress={() => firebaseHelpers._updateEntry('posts', '-K_QF4vG8tiImU5W42K7', {'archived': true})}
             backgroundColor='red'
             iconStyle={{marginRight: 2}}
           />
-          <Text>  Cancel</Text>
+          <Text>  Archive</Text>
         </MenuOption>
         <MenuOption value={4} style={{alignItems: 'center', flexDirection: 'row'}}>
           <Icon.Button
