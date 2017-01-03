@@ -7,7 +7,18 @@
 
 // Component into file from card file
 
+import Firestack from 'react-native-firestack'
+	const configurationOptions = {
+  		debug: true	};
+	const firestack = new Firestack(configurationOptions);
+	firestack.on('debug', msg => console.log('Received debug message', msg))
 
-module.exports._updateEntry = (table, entry, propertyToUpdate) => {
+
+module.exports._updateEntry = (table, key, propertyToUpdate) => {
+
+  firestack.database.ref(table + '/' + key + '/' + propertyToUpdate).update(true);
+
+
   console.log("yay update entry was called wohooo")
+
 }

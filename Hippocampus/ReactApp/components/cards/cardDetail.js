@@ -28,7 +28,7 @@ const DropDown = () => (
         <MenuOption value={2} style={{alignItems: 'center', flexDirection: 'row'}}>
           <Icon.Button
             name="report"
-            onPress={() => firebaseHelpers._updateEntry()}
+            onPress={() => firebaseHelpers._updateEntry('posts', '-K_Q6j1BjtSjMSFhqqkt', 'inappropriate')}
             backgroundColor='red'
             iconStyle={{marginRight: 2}}
           />
