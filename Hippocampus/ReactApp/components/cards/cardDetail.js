@@ -16,29 +16,41 @@ const DropDown = () => (
         <Text style={{ fontSize: 20 }}>&#8942;</Text>
       </MenuTrigger>
       <MenuOptions >
-        <MenuOption value={1} style={{alignItems: 'center'}}>
-          <Icon.Button style={styles.bookmarkIconStyle}
+        <MenuOption value={1} style={{alignItems: 'center', flexDirection: 'row'}}>
+          <Icon.Button
             name="bookmark"
             onPress={() => console.log("You have bookmarked this post")}
             backgroundColor='red'
             iconStyle={{marginRight: 2}}
           />
+          <Text>  Bookmark</Text>
         </MenuOption>
-        <MenuOption value={2} style={{alignItems: 'center'}}>
-          <Icon.Button style={styles.reportIconStyle}
+        <MenuOption value={2} style={{alignItems: 'center', flexDirection: 'row'}}>
+          <Icon.Button
             name="report"
             onPress={() => console.log("You have reported this post")}
             backgroundColor='red'
             iconStyle={{marginRight: 2}}
           />
+          <Text>  Report post</Text>
         </MenuOption>
-        <MenuOption value={3} style={{alignItems: 'center'}}>
-          <Icon.Button style={styles.cancelIconStyle}
+        <MenuOption value={3} style={{alignItems: 'center', flexDirection: 'row'}}>
+          <Icon.Button
             name="cancel"
             onPress={() => console.log("Cancelled")}
             backgroundColor='red'
             iconStyle={{marginRight: 2}}
           />
+          <Text>  Cancel</Text>
+        </MenuOption>
+        <MenuOption value={4} style={{alignItems: 'center', flexDirection: 'row'}}>
+          <Icon.Button
+            name="reply"
+            onPress={() => console.log("This post has been added to your tasks")}
+            backgroundColor='red'
+            iconStyle={{marginRight: 2}}
+          />
+          <Text>  Add to Tasks</Text>
         </MenuOption>
       </MenuOptions>
     </Menu>
@@ -77,15 +89,6 @@ const {
 }
 
 const styles = {
-  bookmarkIconStyle: {
-    flexDirection: 'column'
-  },
-  reportIconStyle: {
-    flexDirection: 'column'
-  },
-  cancelIconStyle: {
-    flexDirection: 'column'
-  },
   headerContentStyle: {
     flexDirection: 'column',
     justifyContent: 'space-around'
