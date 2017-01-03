@@ -16,22 +16,25 @@ const DropDown = () => (
         <Text style={{ fontSize: 20 }}>&#8942;</Text>
       </MenuTrigger>
       <MenuOptions >
-        <MenuOption value={1}>
+        <MenuOption value={1} style={{marginHorizontal: 60, alignItems: 'center'}}>
           <Icon.Button style={styles.bookmarkIconStyle}
             name="bookmark"
             onPress={() => console.log("You have bookmarked this post")}
+            backgroundColor='red'
           />
         </MenuOption>
-        <MenuOption value={2}>
+        <MenuOption value={2} style={{marginHorizontal: 60, alignItems: 'center'}}>
           <Icon.Button style={styles.reportIconStyle}
             name="report"
             onPress={() => console.log("You have reported this post")}
+            backgroundColor='red'
           />
         </MenuOption>
-        <MenuOption value={3}>
+        <MenuOption value={3} style={{marginHorizontal: 60, alignItems: 'center'}}>
           <Icon.Button style={styles.cancelIconStyle}
             name="cancel"
             onPress={() => console.log("Cancelled")}
+            backgroundColor='red'
           />
         </MenuOption>
       </MenuOptions>
@@ -72,13 +75,14 @@ const {
 
 const styles = {
   bookmarkIconStyle: {
-    backgroundColor: 'red',
+    flexDirection: 'column',
+    borderRadius: 1
   },
   reportIconStyle: {
-    backgroundColor: 'red'
+    flexDirection: 'column'
   },
   cancelIconStyle: {
-    backgroundColor: 'red'
+    flexDirection: 'column'
   },
   headerContentStyle: {
     flexDirection: 'column',
