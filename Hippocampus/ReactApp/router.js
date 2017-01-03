@@ -6,6 +6,9 @@ import SignInPage from './components/signInPage/index'
 import Feed from './components/feeds/index'
 import AddPost from './components/feeds/addPost'
 import CreateCaseForm from './components/cases/createCaseForm'
+import CreateCase from './components/cases/caseFormSteps/createCase'
+import AddHistory from './components/cases/caseFormSteps/addHistory'
+import AddTeam from './components/cases/caseFormSteps/addTeam'
 
 export default class RouterComponent extends Component {
   render(){
@@ -20,7 +23,10 @@ export default class RouterComponent extends Component {
             title="Feed"
           />
           <Scene key="addPost" component={AddPost} title="Add post"/>
-          <Scene key="createCaseForm" component={CreateCaseForm} title="Create Case" initial/>
+          <Scene key="createCaseForm" component={CreateCaseForm} title="Create Case form" initial/>
+          <Scene key="createCase" component={CreateCase} title="Create Case"/>
+          <Scene key="addHistory" component={AddHistory} title="Add History"/>
+          <Scene key="addTeam" component={AddTeam} title="Add Team"/>
       </Router>
     )
   }

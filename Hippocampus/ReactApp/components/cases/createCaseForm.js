@@ -5,7 +5,9 @@ import {
 	Text
 } from 'react-native'
 import { Container, Content, InputGroup, Input, Button } from 'native-base';
+import { Actions } from 'react-native-router-flux'
 import CreateCase from './caseFormSteps/createCase'
+import AddHistory from './caseFormSteps/addHistory'
 
 export default class CreateCaseForm extends Component {
   render(){
@@ -14,7 +16,7 @@ export default class CreateCaseForm extends Component {
         <CreateCase/>
         <Text/>
         <Button
-          onPress={{ }}
+          onPress={() => Actions.addHistory()}
           style={{backgroundColor: "#FF0000", alignSelf: 'center'}}>
           Next
         </Button>
