@@ -5,12 +5,9 @@ import CardSection from './cardSection'
 import Button from './cardButton'
 import { Actions } from 'react-native-router-flux'
 import Menu, { MenuOptions, MenuOption, MenuTrigger } from 'react-native-popup-menu'
-// var Order = require('react-native-order-children');
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
-// <View style={{ padding: 5, flexDirection: 'row', backgroundColor: 'pink' }}>
-  // <View style={{ flex: 1 }}><Text>My App</Text></View>
-//style={{ flex: 1 }}  <<Menu context
-  //style={{ flex: 3, justifyContent: 'flex-end', alignItems: 'flex-end' }} <<View after TopNavigation invoked
+
 const DropDown = () => (
     <Menu
         style={{ flex:1, flexDirection: 'column', alignItems: 'flex-end' }}
@@ -20,22 +17,22 @@ const DropDown = () => (
       </MenuTrigger>
       <MenuOptions >
         <MenuOption value={1}>
-          <Text>One</Text>
+          <Icon.Button style={styles.bookmarkIconStyle}
+            name="bookmark"
+            onPress={() => console.log("You have bookmarked this post")}
+          />
         </MenuOption>
         <MenuOption value={2}>
-          <Text>Two</Text>
+          <Icon.Button style={styles.reportIconStyle}
+            name="report"
+            onPress={() => console.log("You have reported this post")}
+          />
         </MenuOption>
         <MenuOption value={3}>
-          <Text>Three</Text>
-        </MenuOption>
-        <MenuOption value={4}>
-          <Text>Four</Text>
-        </MenuOption>
-        <MenuOption value={5}>
-          <Text>Five</Text>
-        </MenuOption>
-        <MenuOption value={6}>
-          <Text>Six</Text>
+          <Icon.Button style={styles.cancelIconStyle}
+            name="cancel"
+            onPress={() => console.log("Cancelled")}
+          />
         </MenuOption>
       </MenuOptions>
     </Menu>
@@ -74,6 +71,15 @@ const {
 }
 
 const styles = {
+  bookmarkIconStyle: {
+    backgroundColor: 'red',
+  },
+  reportIconStyle: {
+    backgroundColor: 'red'
+  },
+  cancelIconStyle: {
+    backgroundColor: 'red'
+  },
   headerContentStyle: {
     flexDirection: 'column',
     justifyContent: 'space-around'
@@ -93,5 +99,6 @@ const styles = {
     marginRight: 10
   }
 }
+
 
 export default CardDetail;
