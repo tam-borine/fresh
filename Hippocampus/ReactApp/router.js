@@ -5,6 +5,7 @@ import { Scene, Router, Actions } from 'react-native-router-flux'
 import SignInPage from './components/signInPage/index'
 import Feed from './components/feeds/index'
 import AddPost from './components/feeds/addPost'
+import CreateCaseForm from './components/cases/createCaseForm'
 
 export default class RouterComponent extends Component {
   render(){
@@ -17,9 +18,9 @@ export default class RouterComponent extends Component {
             key="feed"
             component={Feed}
             title="Feed"
-            initial
           />
           <Scene key="addPost" component={AddPost} title="Add post"/>
+          <Scene key="createCaseForm" component={CreateCaseForm} title="Create Case" initial/>
       </Router>
     )
   }
