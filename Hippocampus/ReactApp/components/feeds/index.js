@@ -35,7 +35,7 @@ export default class Feed extends Component {
 
 	_updateFeedFromFirebase = () => {
 		var value = null
-		firestack.database.ref('posts').orderByChild('timestamp').on('value', (snapshot) => {
+		firestack.database.ref('posts').on('value', (snapshot) => {
 			var objectOfPostObjects = snapshot.value
 			this._extractIntoArray(objectOfPostObjects)
 		})

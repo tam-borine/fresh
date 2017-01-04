@@ -79,7 +79,7 @@ const {
             <Text style={headerTextStyle}>Tam</Text>
             <Text>tam@tam</Text>
           </View>
-          <DropDown k={props.primaryKey}/>
+          <DropDown primaryKey={props.primaryKey}/>
         </CardSection>
         <CardSection >
           <Text >{props.post.body}</Text>
