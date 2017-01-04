@@ -2,19 +2,23 @@
 import React, {Component} from 'react';
 import {
 	ScrollView,
+	View,
 	Text
 } from 'react-native'
 import { Container, Content, InputGroup, Input, Button } from 'native-base';
 import { Actions } from 'react-native-router-flux'
 import CreateCase from './caseFormSteps/createCase'
 import AddHistory from './caseFormSteps/addHistory'
-var firebaseHelpers = require('../../firebaseHelpers')
+import AddTeam from './caseFormSteps/addTeam'
+
 
 
 export default class CreateCaseForm extends Component {
 	constructor(){
+
 		super()
 		this.state = {
+			step: 1,
 		}
 	}
 	_updateTextInput = (field, data) => {
@@ -22,19 +26,30 @@ export default class CreateCaseForm extends Component {
 		newData[field] = data;
 		this.setState(newData)
 	}
+_updateStep(nextScene) {
+	this.setState({step: nextScene})
+}
+//Actions.addHistory({'formData': this.state})
+_navigate = () => {
+	switch (this.state.step) {
+		case 1:
+			Actions.createCase();
+			<CreateCase nextScene={() => this._updateStep(2)} callbackParent={(field, text) => this._updateTextInput(field, text)}/>
+			console.log(this.state.step);
+		case 2:
+			Actions.addHistory();
+			<AddHistory callbackParent={(field, text) => this._updateTextInput(field, text)}/>
+		case 3:
+			Actions.addTeam();
+			<AddTeam callbackParent={(field, text) => this._updateTextInput(field, text)}/>
+}
+	}
 
   render(){
-    return (
-    	<ScrollView>
-        <CreateCase callbackParent={(field, text) => this._updateTextInput(field, text)}/>
-        <Text/>
-        <Button
-          onPress={() => {Actions.addHistory(this.state); firebaseHelpers._writeDataToFirebase('cases', this.state)}}
-          style={{backgroundColor: "#FF0000", alignSelf: 'center'}}>
-          Next
-        </Button>
-      </ScrollView>
-    );
+		this._navigate();
+		return(
+			<View/>
+		)
   }
 }
 

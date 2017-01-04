@@ -7,16 +7,17 @@ import { Actions } from 'react-native-router-flux'
 
 
 const AddHistory = (props) => {
+  const fields = ['Presenting Complaint*', 'DDx','PMHx' ]
   return(
   <View>
     <View>
-      <InputBox plac='Presenting Complaint*'/>
-      <InputBox plac='DDx'/>
-      <InputBox plac='PMHx'/>
+      <InputBox plac={fields[0]} callbackParent={(text) => props.callbackParent(fields[0],text)}/>
+      <InputBox plac={fields[1]} callbackParent={(text) => props.callbackParent(fields[1],text)}/>
+      <InputBox plac={fields[2]} callbackParent={(text) => props.callbackParent(fields[2],text)}/>
     </View>
     <View>
       <Button
-        onPress={() => {Actions.addTeam(); console.log(props)}}
+        onPress={() => {Actions.addTeam(this.props.formData); console.log(props)}}
         style={{backgroundColor: "#FF0000", alignSelf: 'center'}}>
         Next
       </Button>
