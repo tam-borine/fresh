@@ -4,7 +4,7 @@ import {View} from 'react-native'
 import {InputBox} from '../createCaseForm'
 
 const CreateCase = (props) => {
-    const fields =  ['Pt alias*', 'Admission date', 'Age*', 'Sex*', 'Ethnicity', 'Smoking', 'Alcohol/Drugs', 'Allergies']
+    const fields =  ['Pt alias*', 'Admission date', 'Age*', 'Sex*', 'Ethnicity', 'Smoking', 'Alcohol or Drugs', 'Allergies']
     return(
       <View>
         <InputBox plac={fields[0]} callbackParent={(text) => props.callbackParent(fields[0],text)}/>

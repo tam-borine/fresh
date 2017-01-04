@@ -6,7 +6,7 @@ import {InputBox} from '../createCaseForm'
 import { Actions } from 'react-native-router-flux'
 
 
-const AddHistory = () => {
+const AddHistory = (props) => {
   return(
   <View>
     <View>
@@ -16,7 +16,7 @@ const AddHistory = () => {
     </View>
     <View>
       <Button
-        onPress={() => Actions.addTeam()}
+        onPress={() => {Actions.addTeam(); console.log(props)}}
         style={{backgroundColor: "#FF0000", alignSelf: 'center'}}>
         Next
       </Button>

@@ -29,7 +29,7 @@ export default class CreateCaseForm extends Component {
         <CreateCase callbackParent={(field, text) => this._updateTextInput(field, text)}/>
         <Text/>
         <Button
-          onPress={() => {Actions.addHistory(); firebaseHelpers._writeDataToFirebase('cases', this.state)}}
+          onPress={() => {Actions.addHistory(this.state); firebaseHelpers._writeDataToFirebase('cases', this.state)}}
           style={{backgroundColor: "#FF0000", alignSelf: 'center'}}>
           Next
         </Button>
@@ -37,6 +37,8 @@ export default class CreateCaseForm extends Component {
     );
   }
 }
+
+// Could possibly export to a different file
 
 export const InputBox = (props) => {
 	//note: autocorrection of simulator is somehow not detected in time for callback and thus doesn't reach firebase
