@@ -18,35 +18,40 @@ export default class CreateCaseForm extends Component {
 
 		super()
 		this.state = {
-			step: 1,
+			step: "1",
 		}
 	}
+
+	componentDidMount = () => {
+		this._navigate()
+	}
+
 	_updateTextInput = (field, data) => {
 		var newData = {}
 		newData[field] = data;
 		this.setState(newData)
 	}
+
 _updateStep(nextScene) {
-	this.setState({step: nextScene})
+	this.setState({step: nextScene}, () => this._navigate())
+	console.log(this.state.step);
 }
 //Actions.addHistory({'formData': this.state})
 _navigate = () => {
 	switch (this.state.step) {
-		case 1:
-			Actions.createCase();
-			<CreateCase nextScene={() => this._updateStep(2)} callbackParent={(field, text) => this._updateTextInput(field, text)}/>
-			console.log(this.state.step);
-		case 2:
-			Actions.addHistory();
+		case "1":
+			<CreateCase nextScene={() => this._updateStep("2")} callbackParent={(field, text) => this._updateTextInput(field, text)}/>
+			return Actions.createCase();
+		case "2":
 			<AddHistory callbackParent={(field, text) => this._updateTextInput(field, text)}/>
-		case 3:
-			Actions.addTeam();
+			return Actions.addHistory();
+		case "3":
 			<AddTeam callbackParent={(field, text) => this._updateTextInput(field, text)}/>
+			return Actions.addTeam();
 }
 	}
 
   render(){
-		this._navigate();
 		return(
 			<View/>
 		)
