@@ -24,9 +24,6 @@ export default class RouterComponent extends Component {
           />
           <Scene key="addPost" component={AddPost} title="Add post"/>
           <Scene key="createCaseForm" component={CreateCaseForm} title="Create Case form" initial/>
-          <Scene key="createCase" component={CreateCase} title="Create Case"/>
-          <Scene key="addHistory" component={AddHistory} title="Add History"/>
-          <Scene key="addTeam" component={AddTeam} title="Add Team"/>
       </Router>
     )
   }
