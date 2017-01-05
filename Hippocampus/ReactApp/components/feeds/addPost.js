@@ -18,6 +18,7 @@ export default class AddPost extends Component {
   }
 
   _updateTextInput = (text) => {
+		this._checkForHashtag(text)
     this.setState({textInput: text})
   }
 
@@ -38,6 +39,16 @@ export default class AddPost extends Component {
     }, (err) => {console.log('there was an error: '+ err)});
 
   }
+
+	_checkForHashtag = (text) => {
+		var re = /#/
+		if (text.match(re)) {
+			console.log("This has a hashtag");
+		} else {
+			console.log("This doesn't have a hashtag");
+		}
+	}
+
 
 
   render() {

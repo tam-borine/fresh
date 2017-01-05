@@ -19,14 +19,13 @@ export default class RouterComponent extends Component {
             component={Feed}
             title="Feed"
           />
-          <Scene key="addPost" component={AddPost} title="Add post"/>
+          <Scene key="addPost" component={AddPost} title="Add post" initial/>
           <Scene
             onLeft={() => {console.log("Back button")}}
             leftTitle="Back"
             key="createCaseForm"
             component={CreateCaseForm}
             title="Create Case form"
-            initial
           />
       </Router>
     )
