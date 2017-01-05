@@ -7,7 +7,7 @@ import { Actions } from 'react-native-router-flux'
 
 
 const AddHistory = (props) => {
-  const fields = ['Presenting Complaint*', 'DDx','PMHx' ]
+  const fields = ['Presenting Complaint*', 'DDx','PMHx' ];
   return(
   <View>
     <View>
@@ -17,7 +17,7 @@ const AddHistory = (props) => {
     </View>
     <View>
       <Button
-        onPress={() => {Actions.addTeam(this.props.formData); console.log(props)}}
+        onPress={() => props.nextScene()}
         style={{backgroundColor: "#FF0000", alignSelf: 'center'}}>
         Next
       </Button>

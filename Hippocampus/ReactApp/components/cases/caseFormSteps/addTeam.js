@@ -3,16 +3,16 @@ import React from 'react'
 import {View, Text} from 'react-native'
 import { Button } from 'native-base'
 
-var firebaseHelpers = require('../../../firebaseHelpers')
-
 import {InputBox} from '../createCaseForm'
 
 const AddTeam = (props) => {
+
+  const fields = ['Team name']
   return (
     <View>
-      <InputBox plac='Team Name' callbackParent={(text) => console.log(text)}/>
+      <InputBox plac={fields[0]} callbackParent={(text) => props.callbackParent(fields[0],text)}/>
       <Button
-        onPress={() => {firebaseHelpers._writeDataToFirebase('cases', this.props.formData)}}
+        onPress={() => props.submitToFirebase()}
         style={{backgroundColor: "#FF0000", alignSelf: 'center'}}>
         Submit
       </Button>

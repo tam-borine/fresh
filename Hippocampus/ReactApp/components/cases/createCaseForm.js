@@ -11,50 +11,58 @@ import CreateCase from './caseFormSteps/createCase'
 import AddHistory from './caseFormSteps/addHistory'
 import AddTeam from './caseFormSteps/addTeam'
 
-
+var firebaseHelpers = require('../../firebaseHelpers')
 
 export default class CreateCaseForm extends Component {
 	constructor(){
 
 		super()
 		this.state = {
-			step: "1",
+			step: 1,
+			dataOne: {},
+			dataTwo: {},
+			dataThree: {},
+			data: {}
 		}
 	}
 
-	componentDidMount = () => {
-		this._navigate()
+	_updateTextInput = (field, data, scene) => {
+		var newData = {}
+		var newRef = {}
+		newData[field] = data
+		newRef[scene] = newData
+		this.setState(newRef)
+		console.log(this.state.dataOne);
+	} //scene can be renamed
+
+	_handleNextScene = (step) => {
+		this.setState({step: step})
 	}
 
-	_updateTextInput = (field, data) => {
-		var newData = {}
-		newData[field] = data;
-		this.setState(newData)
+	_mergeData = () => {
+		var data = {}
+		Object.assign(data, this.state.dataOne,this.state.dataTwo,this.state.dataThree)
+		console.log(this.state.dataTwo);
+		this.setState(
+			{data: data},
+			() => {console.log(this.state.data); firebaseHelpers._writeDataToFirebase('cases', this.state.data)}
+		)
 	}
 
 _updateStep(nextScene) {
 	this.setState({step: nextScene}, () => this._navigate())
 	console.log(this.state.step);
 }
-//Actions.addHistory({'formData': this.state})
-_navigate = () => {
-	switch (this.state.step) {
-		case "1":
-			<CreateCase nextScene={() => this._updateStep("2")} callbackParent={(field, text) => this._updateTextInput(field, text)}/>
-			return Actions.createCase();
-		case "2":
-			<AddHistory callbackParent={(field, text) => this._updateTextInput(field, text)}/>
-			return Actions.addHistory();
-		case "3":
-			<AddTeam callbackParent={(field, text) => this._updateTextInput(field, text)}/>
-			return Actions.addTeam();
-}
-	}
 
   render(){
-		return(
-			<View/>
-		)
+		switch (this.state.step) {
+			case 1:
+				return <CreateCase nextScene={()=> this._handleNextScene(2)} callbackParent={(field, text) => this._updateTextInput(field, text, "dataOne")}/>
+			case 2:
+				return <AddHistory nextScene={()=> this._handleNextScene(3)} callbackParent={(field, text) => this._updateTextInput(field, text, "dataTwo")}/>
+			case 3:
+				return <AddTeam submitToFirebase={()=> this._mergeData()} callbackParent={(field, text) => this._updateTextInput(field, text, "dataThree")}/>
+		}
   }
 }
 

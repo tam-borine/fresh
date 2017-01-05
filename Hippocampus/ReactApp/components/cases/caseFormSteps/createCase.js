@@ -7,7 +7,6 @@ import { Actions } from 'react-native-router-flux'
 import {InputBox} from '../createCaseForm'
 
 const CreateCase = (props) => {
-    // props.createCaseId = this.props.title
     const fields =  ['Pt alias*', 'Admission date', 'Age*', 'Sex*', 'Ethnicity', 'Smoking', 'Alcohol or Drugs', 'Allergies']
     return(
       <View>
@@ -23,7 +22,7 @@ const CreateCase = (props) => {
         </View>
         <View>
           <Button
-            onPress={() => props.nextScene}
+            onPress={() => { props.nextScene()}}
             style={{backgroundColor: "#FF0000", alignSelf: 'center'}}>
             Next
           </Button>
