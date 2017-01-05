@@ -3,7 +3,8 @@ import React, {Component} from 'react';
 import {
 	ScrollView,
 	View,
-	Text
+	Text,
+	Alert
 } from 'react-native'
 import { Container, Content, InputGroup, Input, Button } from 'native-base';
 import { Actions } from 'react-native-router-flux'
@@ -54,10 +55,19 @@ _updateStep(nextScene) {
 	console.log(this.state.step);
 }
 
+_validateHashtag = (text) => {
+	var re = /^#/
+	if (text.match(re)) {
+		console.log("Passed");
+	} else {
+		Alert.alert("You need to start case with a hashtag");
+	}
+}
+
   render(){
 		switch (this.state.step) {
 			case 1:
-				return <CreateCase nextScene={()=> this._handleNextScene(2)} callbackParent={(field, text) => this._updateTextInput(field, text, "dataOne")}/>
+				return <CreateCase validateHashtag={(text) => this._validateHashtag(text)} nextScene={()=> this._handleNextScene(2)} callbackParent={(field, text) => this._updateTextInput(field, text, "dataOne")}/>
 			case 2:
 				return <AddHistory nextScene={()=> this._handleNextScene(3)} callbackParent={(field, text) => this._updateTextInput(field, text, "dataTwo")}/>
 			case 3:
