@@ -11,7 +11,7 @@ const CreateCase = (props) => {
     return(
       <View>
         <View>
-          <InputBox plac={fields[0]} callbackParent={(text) => props.callbackParent(fields[0],props.validateHashtag(text))}/>
+          <InputBox plac={fields[0]} callbackParent={(text) => props.callbackParent(fields[0],text)}/>
           <InputBox plac={fields[1]} callbackParent={(text) => props.callbackParent(fields[1],text)}/>
           <InputBox plac={fields[2]} callbackParent={(text) => props.callbackParent(fields[2],text)}/>
           <InputBox plac={fields[3]} callbackParent={(text) => props.callbackParent(fields[3],text)}/>

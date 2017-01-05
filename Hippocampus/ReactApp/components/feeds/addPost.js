@@ -18,13 +18,12 @@ export default class AddPost extends Component {
   }
 
   _updateTextInput = (text) => {
-		this._checkForHashtag(text)
     this.setState({textInput: text})
+		// console.log(this.state.textInput);
   }
 
   _makeFirebasePost = () => {
-
-     //replace Alfie with currentUser
+		this._grabHashtagIfExists()
     firestack.database.ref().child('posts').push(
       {
       author: "Alfie",
@@ -40,15 +39,38 @@ export default class AddPost extends Component {
 
   }
 
-	_checkForHashtag = (text) => {
-		var re = /#/
-		if (text.match(re)) {
-			console.log("This has a hashtag");
-		} else {
-			console.log("This doesn't have a hashtag");
-		}
+
+	_grabHashtagIfExists = () => {
+			var regex = /(^#|\s#)([a-z0-9]+)/gi
+			const txt = this.state.textInput
+			var matchesArray = txt.match(regex)
+			var caseString = matchesArray[0]
+			var split = caseString.split(" ")
+			var finalString = split.pop()
+			return finalString
 	}
 
+	// var aliasArray = this._searchFirebase()
+	// this._isVirginAlias(aliasArray, userInput)
+
+	_searchFirebase = () => {
+		var aliasArray = []
+		firestack.database.ref("cases").on('value', (snapshot) => {
+		const data = snapshot.value
+		for (k in data) {
+			aliasArray.push(data[k]["Pt alias*"])
+		}
+	})
+		return aliasArray
+	}
+
+	_isVirginAlias = (array, userInput) => {
+		if(array.contains(userInput)) {
+			// Go into firebase and add post id to existing case
+		} else {
+			// Have a pop up to make a new case
+		}
+	}
 
 
   render() {

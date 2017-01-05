@@ -29,6 +29,7 @@ export default class CreateCaseForm extends Component {
 	}
 
 	_updateTextInput = (field, data, scene) => {
+		if (field == "Pt alias*") {this._validateHashtag(data)}
 		var oldData = this.state[scene]
 		var dataToAppend = {}
 		var finalData = {}
@@ -65,7 +66,7 @@ _validateHashtag = (text) => {
   render(){
 		switch (this.state.step) {
 			case 1:
-				return <CreateCase validateHashtag={(text) => this._validateHashtag(text)} nextScene={()=> this._handleNextScene(2)} callbackParent={(field, text) => this._updateTextInput(field, text, "dataOne")}/>
+				return <CreateCase nextScene={()=> this._handleNextScene(2)} callbackParent={(field, text) => this._updateTextInput(field, text, "dataOne")}/>
 			case 2:
 				return <AddHistory nextScene={()=> this._handleNextScene(3)} callbackParent={(field, text) => this._updateTextInput(field, text, "dataTwo")}/>
 			case 3:
