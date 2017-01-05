@@ -6,6 +6,7 @@ import {
 	Text,
 	Alert
 } from 'react-native'
+import update from 'immutability-helper'; //needed to stop overwriting in setState during _updateTextInput()
 import { Container, Content, InputGroup, Input, Button } from 'native-base';
 import { Actions } from 'react-native-router-flux'
 import CreateCase from './caseFormSteps/createCase'
@@ -28,32 +29,29 @@ export default class CreateCaseForm extends Component {
 	}
 
 	_updateTextInput = (field, data, scene) => {
-		var newData = {}
-		var newRef = {}
-		newData[field] = data
-		newRef[scene] = newData
-		this.setState(newRef)
-		console.log(this.state.dataOne);
+		var oldData = this.state[scene]
+		var dataToAppend = {}
+		var finalData = {}
+		dataToAppend[field] = data
+		var mergedData = update(oldData, {$merge: dataToAppend}) //we need immutability-helper, imported :(
+		finalData[scene] = mergedData
+		this.setState(finalData)
 	} //scene can be renamed
 
 	_handleNextScene = (step) => {
 		this.setState({step: step})
 	}
 
+//check if we still need this
 	_mergeData = () => {
 		var data = {}
 		Object.assign(data, this.state.dataOne,this.state.dataTwo,this.state.dataThree)
 		console.log(this.state.dataTwo);
 		this.setState(
 			{data: data},
-			() => {console.log(this.state.data); firebaseHelpers._writeDataToFirebase('cases', this.state.data)}
+			() => {console.log(this.state.data); console.log("this.state.data merged above") ; firebaseHelpers._writeDataToFirebase('cases', this.state.data)}
 		)
 	}
-
-_updateStep(nextScene) {
-	this.setState({step: nextScene}, () => this._navigate())
-	console.log(this.state.step);
-}
 
 _validateHashtag = (text) => {
 	var re = /^#/

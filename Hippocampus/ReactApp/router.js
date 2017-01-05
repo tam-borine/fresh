@@ -6,9 +6,6 @@ import SignInPage from './components/signInPage/index'
 import Feed from './components/feeds/index'
 import AddPost from './components/feeds/addPost'
 import CreateCaseForm from './components/cases/createCaseForm'
-import CreateCase from './components/cases/caseFormSteps/createCase'
-import AddHistory from './components/cases/caseFormSteps/addHistory'
-import AddTeam from './components/cases/caseFormSteps/addTeam'
 
 export default class RouterComponent extends Component {
   render(){

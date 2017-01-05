@@ -19,3 +19,4 @@ module.exports._writeDataToFirebase = (table, data, actionCallback) => {
 }
 
 // Is the button a cancel button or an archived button?
+// ^^^ archive button... cancel is it's name in react-native-vector-icons library
