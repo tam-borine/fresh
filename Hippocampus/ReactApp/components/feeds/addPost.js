@@ -23,9 +23,20 @@ export default class AddPost extends Component {
     this.setState({textInput: text})
   }
 
-  _makeFirebasePost = () => {
-		const casePrimaryKey = tagHelpers._hashTagHandler(this.state.textInput, firestack);
-    firestack.database.ref().child('posts').push(
+  _asyncHashtagCheck = () => {
+		var hashtaggedWord = tagHelpers._grabHashtagIfExists(this.state.textInput)
+		if (hashtaggedWord) {
+			tagHelpers._searchFirebase(firestack, hashtaggedWord)
+			.then((casePrimaryKey) => {
+				this._addPost(casePrimaryKey)})
+		} else { //post doesn't involve case so move on like nothing happened
+			this._addPost(casePrimaryKey) //go and continue to make post anyway
+			console.log("no hash tag in post");
+		}
+  }
+
+	_addPost = (casePrimaryKey) => {
+		firestack.database.ref().child('posts').push(
       {
       author: "Alfie",
       body: this.state.textInput,
@@ -37,13 +48,12 @@ export default class AddPost extends Component {
       ).done((succ) => {
 				postPrimaryKey = succ.key
 				if (casePrimaryKey){
-					console.log("this has been called");
+					console.log("addPosts .done and if casePrimaryKey been called AM I CALLED????");
 					firebaseHelper._updateEntry("cases", casePrimaryKey, {posts: postPrimaryKey})
 				}
       	Actions.pop({refresh: {}});
     }, (err) => {console.log('there was an error: '+ err)});
-
-  }
+	}
 
   render() {
     return (
@@ -54,7 +64,7 @@ export default class AddPost extends Component {
         onChangeText={(text) => this._updateTextInput(text)}
       />
       <Button
-        onPress={() => this._makeFirebasePost()}
+        onPress={() => this._asyncHashtagCheck()}
         title="Make a post!"
         color="#841584"
         accessibilityLabel="Learn more about this purple button"
