@@ -27,15 +27,15 @@ export default class AddPost extends Component {
 		var hashtaggedWord = tagHelpers._grabHashtagIfExists(this.state.textInput)
 		if (hashtaggedWord) {
 			tagHelpers._searchFirebase(firestack, hashtaggedWord)
-			.then((casePrimaryKey) => {
-				this._addPost(casePrimaryKey)})
+			.then((keyAndDataArray) => {
+				this._addPost(keyAndDataArray)})
 		} else { //post doesn't involve case so move on like nothing happened
-			this._addPost(casePrimaryKey) //go and continue to make post anyway
+			this._addPost(keyAndDataArray) //go and continue to make post anyway
 			console.log("no hash tag in post");
 		}
   }
 
-	_addPost = (casePrimaryKey) => {
+	_addPost = (keyAndDataArray) => {
 		firestack.database.ref().child('posts').push(
       {
       author: "Alfie",
@@ -47,9 +47,11 @@ export default class AddPost extends Component {
       }
       ).done((succ) => {
 				postPrimaryKey = succ.key
-				if (casePrimaryKey){
-					console.log(casePrimaryKey);
-					firebaseHelper._writeDataToFirebase("posts/" + postPrimaryKey + "/cases", {casePrimary: "#CDD"})
+				if (keyAndDataArray){
+					console.log(keyAndDataArray);
+					var caseKey = keyAndDataArray[0]
+					var caseData = keyAndDataArray[1]
+					firebaseHelper._writeDataToFirebase("cases/" + caseKey + "/posts", {caseData})
 				}
       	Actions.pop({refresh: {}});
     }, (err) => {console.log('there was an error: '+ err)});
