@@ -43,13 +43,13 @@ export default class AddPost extends Component {
       inappropriate: false,
       archived: false,
       bookmarked: false,
-      timestamp: (new Date().getTime())
+      timestamp: (new Date().getTime()),
       }
       ).done((succ) => {
 				postPrimaryKey = succ.key
 				if (casePrimaryKey){
-					console.log("addPosts .done and if casePrimaryKey been called AM I CALLED????");
-					firebaseHelper._updateEntry("cases", casePrimaryKey, {posts: postPrimaryKey})
+					console.log(casePrimaryKey);
+					firebaseHelper._writeDataToFirebase("posts/" + postPrimaryKey + "/cases", {casePrimary: "#CDD"})
 				}
       	Actions.pop({refresh: {}});
     }, (err) => {console.log('there was an error: '+ err)});

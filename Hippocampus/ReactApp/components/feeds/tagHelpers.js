@@ -22,8 +22,6 @@ module.exports._searchFirebase = (firestack, hashtaggedWord) => {
 
       const casePrimaryKey = module.exports._makeOrUpdateCase(aliasArray, hashtaggedWord)
       //async so must be called here
-      console.log(casePrimaryKey);
-      console.log("casePrimaryKey from searchFirebase resolved above");
       resolve(casePrimaryKey)
     })
   })
