@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, TextInput, Button } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 var tagHelpers = require('./tagHelpers.js')
+var firebaseHelper = require('../../firebaseHelpers')
 
 import Firestack from 'react-native-firestack'
 	const configurationOptions = {
@@ -36,7 +37,8 @@ export default class AddPost extends Component {
       ).done((succ) => {
 				postPrimaryKey = succ.key
 				if (casePrimaryKey){
-					//add postPrimaryKey to cases, caseId>posts>postid=key
+					console.log("this has been called");
+					firebaseHelper._updateEntry("cases", casePrimaryKey, {posts: postPrimaryKey})
 				}
       	Actions.pop({refresh: {}});
     }, (err) => {console.log('there was an error: '+ err)});
