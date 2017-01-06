@@ -36,6 +36,7 @@ export default class AddPost extends Component {
   }
 
 	_addPost = (casePrimaryKey) => {
+		var foreignKeyObj = {}
 		firestack.database.ref().child('posts').push(
       {
       author: "Alfie",
@@ -43,13 +44,15 @@ export default class AddPost extends Component {
       inappropriate: false,
       archived: false,
       bookmarked: false,
-      timestamp: (new Date().getTime())
+      timestamp: (new Date().getTime()),
       }
       ).done((succ) => {
 				postPrimaryKey = succ.key
 				if (casePrimaryKey){
-					console.log("addPosts .done and if casePrimaryKey been called AM I CALLED????");
-					firebaseHelper._updateEntry("cases", casePrimaryKey, {posts: postPrimaryKey})
+					foreignKeyObj[postPrimaryKey] = true
+					console.log(casePrimaryKey);
+					console.log("case primary key above");
+					firebaseHelper._foreignKeyUpdater("cases/" + casePrimaryKey + "/posts",foreignKeyObj)
 				}
       	Actions.pop({refresh: {}});
     }, (err) => {console.log('there was an error: '+ err)});
