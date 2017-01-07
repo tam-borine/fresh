@@ -23,7 +23,9 @@ module.exports._writeSpecificPlaceFirebase = (nodePath, dataObj) => {
 
 module.exports._writeDataToFirebase = (table, data, actionCallback) => {
 	firestack.database.ref().child(table).push(data).done((succ) => {
-		//action callback
+		if(actionCallback){
+			actionCallback();
+		}
 }, (err) => {console.log('there was an error: '+ err)});
 
 }
