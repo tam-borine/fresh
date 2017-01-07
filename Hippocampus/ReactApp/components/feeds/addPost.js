@@ -96,6 +96,7 @@ export default class AddPost extends Component {
 					<Button
 						title='no'
 						onPress={() => {
+						this._addPost();
 						this.setModalVisible(false)
 					}}/>
 					<Button
