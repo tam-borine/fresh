@@ -14,10 +14,15 @@ module.exports._updateEntry = (table, key, newData) => {
 module.exports._foreignKeyUpdater = (table, newData) => {
   firestack.database.ref(table).update(newData);
 }
+//we are not using this but we could it difers from above only in that it has no .child
 
-module.exports._writeSpecificPlaceFirebase = (nodePath, dataObj) => {
+//if _writeSpecificPlaceFirebase and _writeDataToFirebase returned promises then async stuff
+//can be managed elsewhere and customised more
+module.exports._writeSpecificPlaceFirebase = (nodePath, dataObj, asyncCallback) => {
 	firestack.database.ref(nodePath).set(dataObj).done((succ) => {
-		//any async stuff
+		if(asyncCallback){
+			asyncCallback();
+		}
 	},  (err) => {console.log('there was an error: '+ err)});
 }
 
@@ -26,9 +31,5 @@ module.exports._writeDataToFirebase = (table, data, actionCallback) => {
 		if(actionCallback){
 			actionCallback();
 		}
-}, (err) => {console.log('there was an error: '+ err)});
-
+	}, (err) => {console.log('there was an error: '+ err)});
 }
-
-// Is the button a cancel button or an archived button?
-// ^^^ archive button... cancel is it's name in react-native-vector-icons library
