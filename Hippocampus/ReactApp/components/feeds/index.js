@@ -57,7 +57,6 @@ export default class Feed extends Component {
 	}
 
 	_renderPosts = () => {
-		console.log(this.state.data);
 	  return this.state.data.map(post =>
 			<CardDetail key={post[0]} post={post[1]} primaryKey={post[0]}/>
 		)

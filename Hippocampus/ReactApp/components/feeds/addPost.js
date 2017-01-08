@@ -3,7 +3,6 @@ import { View, TextInput, Button, Modal, StyleSheet, Text, TouchableHighlight } 
 import { Actions } from 'react-native-router-flux'
 var tagHelpers = require('./tagHelpers.js')
 var firebaseHelper = require('../../firebaseHelpers')
-//import { Modal, Text, TouchableHighlight, View } from 'react-native';
 
 import Firestack from 'react-native-firestack'
 	const configurationOptions = {
@@ -29,20 +28,24 @@ export default class AddPost extends Component {
 		this.setState({modalVisible: visible});
 	}
 
+	handleHash = (hashtaggedWord) => {
+		tagHelpers._searchFirebase(firestack, hashtaggedWord)
+		.then((casePrimaryKey) => {
+			if (casePrimaryKey) {
+				this._addPost(casePrimaryKey)
+			} else {
+				this.setModalVisible(true)
+
+			}
+		}, (error) => {console.log("ERROR after searchFirebase " + error)})
+	}
+
   _asyncHashtagCheck = () => {
 		var hashtaggedWord = tagHelpers._grabHashtagIfExists(this.state.textInput)
 		if (hashtaggedWord) {
-			tagHelpers._searchFirebase(firestack, hashtaggedWord)
-			.then((casePrimaryKey) => {
-				if (casePrimaryKey) {
-					this._addPost(casePrimaryKey)
-				} else {
-					this.setModalVisible(true)
-				}
-			})
-		} else { //post doesn't involve case so move on like nothing happened
+			this.handleHash(hashtaggedWord)
+		} else { //post doesn't involve case
 			this._addPost() //continue to make post anyway
-			console.log("no hash tag in post");
 		}
   }
 
@@ -61,12 +64,10 @@ export default class AddPost extends Component {
 				postPrimaryKey = succ.key
 				if (casePrimaryKey){
 					foreignKeyObj[postPrimaryKey] = true
-					console.log(casePrimaryKey);
-					console.log("case primary key above");
 					firebaseHelper._foreignKeyUpdater("cases/" + casePrimaryKey + "/posts",foreignKeyObj)
 				}
       	Actions.pop({refresh: {}});
-    }, (err) => {console.log('there was an error: '+ err)});
+    }, (err) => {console.log('error when adding post: '+ err)});
 	}
 
   render() {
@@ -102,8 +103,9 @@ export default class AddPost extends Component {
 					<Button
 						title='yes'
 						onPress={() => {
-							Actions.createCaseForm();
 							this.setModalVisible(false)
+
+							Actions.createCaseForm();
 					}}/>
 				</View>
 			 </View>

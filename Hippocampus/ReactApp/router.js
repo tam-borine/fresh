@@ -18,8 +18,9 @@ export default class RouterComponent extends Component {
             key="feed"
             component={Feed}
             title="Feed"
+            initial
           />
-          <Scene key="addPost" component={AddPost} title="Add post" initial/>
+          <Scene key="addPost" component={AddPost} title="Add post" />
           <Scene
             onLeft={() => {console.log("Back button")}}
             leftTitle="Back"

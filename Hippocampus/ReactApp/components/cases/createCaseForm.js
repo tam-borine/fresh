@@ -47,21 +47,25 @@ export default class CreateCaseForm extends Component {
 	_mergeData = () => {
 		var data = {}
 		Object.assign(data, this.state.dataOne,this.state.dataTwo,this.state.dataThree)
-		console.log(this.state.dataTwo);
 		this.setState(
 			{data: data},
-			() => {firebaseHelpers._writeDataToFirebase('cases', this.state.data, () => Actions.pop())}
+			() => {
+				firebaseHelpers._writeDataToFirebase(
+					'cases', this.state.data,
+				  () => Actions.pop()
+				)
+			}
 		)
 	}
 
-_validateHashtag = (text) => {
-	var re = /^#/
-	if (text.match(re)) {
-		console.log("Passed");
-	} else {
-		Alert.alert("You need to start case with a hashtag");
+	_validateHashtag = (text) => {
+		var re = /^#/
+		if (text.match(re)) {
+			console.log("Passed");
+		} else {
+			Alert.alert("You need to start case with a hashtag");
+		}
 	}
-}
 
   render(){
 		switch (this.state.step) {
@@ -76,7 +80,6 @@ _validateHashtag = (text) => {
 }
 
 // Could possibly export to a different file
-
 export const InputBox = (props) => {
 	//note: autocorrection of simulator is somehow not detected in time for callback and thus doesn't reach firebase
 		return (
