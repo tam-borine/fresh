@@ -50,7 +50,7 @@ export default class CreateCaseForm extends Component {
 		console.log(this.state.dataTwo);
 		this.setState(
 			{data: data},
-			() => {console.log(this.state.data); console.log("this.state.data merged above") ; firebaseHelpers._writeDataToFirebase('cases', this.state.data)}
+			() => {firebaseHelpers._writeDataToFirebase('cases', this.state.data, () => Actions.pop())}
 		)
 	}
 

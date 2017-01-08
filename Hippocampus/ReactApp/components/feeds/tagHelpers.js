@@ -20,10 +20,12 @@ module.exports._searchFirebase = (firestack, hashtaggedWord) => {
         var ptAliasData = data[k]["Pt alias*"]
         aliasArray.push([k, ptAliasData])
       }
-
-      const keyAndDataArray = module.exports._makeOrUpdateCase(aliasArray, hashtaggedWord)
+      const casePrimaryKey = module.exports._findMatchingCase(aliasArray, hashtaggedWord)
       //async so must be called here
-      resolve(keyAndDataArray)
+      console.log(casePrimaryKey);
+      console.log("casePrimaryKey from searchFirebase resolved above");
+      resolve(casePrimaryKey)
+      //check firebase docs for error handling .catch after .on() ?
     })
   })
 }
@@ -32,19 +34,24 @@ module.exports._searchFirebase = (firestack, hashtaggedWord) => {
 // if they do it assigns the post_id key to that case,
 // if not returns pop up that informs user this is the first time
 // this case has been used and they should go to createCaseForm
-module.exports._makeOrUpdateCase = (aliasArray, hashtaggedWord) => {
-    var keyAndDataArray = []
-      for (var i = 0; i < aliasArray.length; i++) {
-        var firebaseCaseStr = aliasArray[i][1].trim()
-        if (firebaseCaseStr == hashtaggedWord) {
-          keyAndDataArray.push(aliasArray[i][0])
-          keyAndDataArray.push(firebaseCaseStr)
-          return keyAndDataArray //primarykey of case
-      	} else {
-      		console.log("Redirect to new case scene")
-      		// Have a pop up to make a new case
-          // Then send over the case_id key so when case is made has right link
-          return aliasArray[i][0]// << User inputted case key with hashtag
-      	}
-  		}
-  	}
+
+module.exports._findMatchingCase = (aliasArray, hashtaggedWord) => {
+		for (var i = 0; i < aliasArray.length; i++) {
+      var firebaseCaseStr = aliasArray[i][1].trim()
+      if (firebaseCaseStr == hashtaggedWord) {
+        return aliasArray[i][0] //primarykey of case
+    	}
+		}
+  }
+
+
+
+
+    // else {
+    //   console.log("Redirect to new case scene")
+    //   // Have a pop up to make a new case and
+    //   //make sure it's finished before we...
+    //
+    //   // Then send over the case_id key so when case is made has right link
+    //   return aliasArray[i][0]// << User inputted case key with hashtag
+    // }
