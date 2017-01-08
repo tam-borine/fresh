@@ -27,6 +27,7 @@ module.exports._searchFirebase = (firestack, hashtaggedWord) => {
 // if they do it assigns the post_id key to that case,
 // if not returns pop up that informs user this is the first time
 // this case has been used and they should go to createCaseForm
+
 module.exports._findMatchingCase = (aliasArray, hashtaggedWord) => {
 		for (var i = 0; i < aliasArray.length; i++) {
       var firebaseCaseStr = aliasArray[i][1].trim()
